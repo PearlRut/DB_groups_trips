@@ -1,118 +1,49 @@
-# רותי אולמן 325442259 , מיכל סוויסה 
+# Group Trips Database System
 
-# Group Trips Database Project
+## Introduction
 
-## מבוא
+This project presents the design and implementation of a relational database system for managing organized group trips.
 
-מערכת זו מיועדת לניהול טיולים קבוצתיים.  
-המערכת מאפשרת לנהל טיולים, משתתפים, מדריכים, מסלולים, לוחות זמנים ואירועים במהלך הטיול.
+The system manages key entities such as participants, trips, guides, routes, schedules, events, and actions. It allows tracking trip activities, organizing participants into trips, and maintaining structured and consistent data.
 
-המערכת תומכת בפונקציונליות כגון:
-- יצירת טיולים ושיוך מסלולים וסוגי תחבורה
-- ניהול משתתפים ומדריכים
-- תכנון לוחות זמנים (Schedules)
-- ניהול אירועים ופעולות
-- שיוך משתתפים לטיולים
+The system was designed using a top-down approach. First, system screens were defined using AI tools, and based on them, a relational database schema was created using ERDPlus. The database was normalized to Third Normal Form (3NF) to ensure data consistency and eliminate redundancy.
 
----
+The project also demonstrates multiple methods of data insertion, including SQL INSERT statements, CSV file import using PostgreSQL COPY, direct insertion using Python, and external data generation using Mockaroo.
 
-## אפיון מסכים (AI Studio)
+Finally, the database was backed up and restored to verify data integrity and system reliability.
 
-האיפיון בוצע באמצעות Google AI Studio.
+## System Screens (Google AI Studio)
 
-קישור:
-[להדביק כאן את הלינק]
+The system interface was designed using Google AI Studio as part of the top-down design approach. These screens define the main functionality of the system and guided the database design.
 
----
+### Trips Management Screen
+This screen presents all available trips, including key details such as destination, duration, distance, and assigned transport type.
+![Trips](images/IMG_4488.JPG)
 
-## החלטות תכנון
+### Transport Types Screen
+Displays the available transportation options used in the system, such as buses, private vehicles, and off-road vehicles.
+![Transport](images/IMG_4489.JPG)
 
-- נעשה שימוש במפתחות ראשיים (Primary Keys) לכל טבלה
-- נעשה שימוש במפתחות זרים (Foreign Keys) לשמירה על שלמות קשרים
-- נעשה שימוש בטבלת קישור (trip_participants) לייצוג קשר רבים-לרבים
-- בטבלת schedules נעשה שימוש במפתח מורכב (trip_id, order_num)
-- הקשר בין events ל־schedules ממומש באמצעות מפתח זר מורכב
-- הסכמה עומדת בנורמליזציה של 3NF (אין כפילויות מיותרות ואין תלות טרנזיטיבית)
+### Participants Management Screen
+Shows all participants registered in the system, including personal details such as name, phone number, and email.
+![Participants](images/IMG_4490.JPG)
 
----
+### Guides Management Screen
+Displays all guides in the system, including their experience, license information, and contact details.
+![Guides](images/IMG_4491.JPG)
 
-## הכנסת נתונים
+### Trips Detailed View
+Provides detailed information about each trip, including assigned route, guide, and number of participants.
+![Trips Details](images/IMG_4492.JPG)
 
-הנתונים הוכנסו באמצעות שלוש שיטות שונות:
+### Events Screen
+Displays events related to trips, including date, time, and pricing details.
+![Events](images/IMG_4493.JPG)
 
-### 1. הכנסת נתונים ידנית
-קובץ:
-insertTables.sql
+### Schedule Screen
+Shows the timeline of activities within a trip, allowing structured planning of events and actions.
+![Schedule](images/IMG_4494.JPG)
 
-שיטה זו שימשה לבדיקה ראשונית של תקינות מבנה הטבלאות והקשרים ביניהן.
-
-### 2. יצירת נתונים באמצעות תוכנית Python
-קובץ:
-generate_data.py
-
-הסקריפט יוצר נתונים מלאכותיים (synthetic data) התואמים למבנה בסיס הנתונים, כולל:
-- 20,000 רשומות בטבלת participants
-- 20,000 רשומות בטבלת trip_participants
-- 500 רשומות בכל שאר הטבלאות
-
-הנתונים נשמרים כקבצי CSV.
-
-### 3. טעינת נתונים מקבצי CSV
-קובץ:
-loadFromCsv.sql
-
-הנתונים הוטענו לבסיס הנתונים באמצעות פקודת \copy של PostgreSQL מתוך קבצי CSV.
-
----
-
-## כמות נתונים
-
-| טבלה | כמות רשומות |
-|------|------------|
-| participants | 20000 |
-| trip_participants | 20000 |
-| routes | 500 |
-| transport_types | 500 |
-| trips | 500 |
-| guides | 500 |
-| schedules | 500 |
-| events | 500 |
-| actions | 500 |
-
----
-
-## גיבוי בסיס הנתונים
-
-בוצע גיבוי באמצעות הפקודה:
-
-docker exec -t PostgreSQL_DB pg_dump -U postgres -d group_trips_db > backup.sql
-
-קובץ הגיבוי נשמר בפרויקט וניתן לשימוש לצורך שחזור בסיס הנתונים.
-
----
-
-## שחזור בסיס הנתונים
-
-ניתן לשחזר את בסיס הנתונים באמצעות הפקודה:
-
-psql -U postgres -d group_trips_db < backup.sql
-
----
-
-## מבנה הפרויקט
-
-Group_Trips/
-├── init-db/
-├── data/
-├── scripts/
-├── DBProject/
-│   └── שלב א/
-├── docker-compose.yml
-├── README.md
-
----
-
-## סיכום
-
-המערכת תוכננה ומומשה תוך שימוש בעקרונות של בסיסי נתונים רלציוניים.  
-הפרויקט כולל תכנון לוגי ופיזי, מימוש הטבלאות, אכלוס נתונים בכמויות גדולות, שימוש במספר שיטות להזנת נתונים, וביצוע גיבוי ושחזור של בסיס הנתונים.
+### Activities Screen
+Displays all activities available in the system, such as games or food-related events.
+![Activities](images/IMG_4495.JPG)
