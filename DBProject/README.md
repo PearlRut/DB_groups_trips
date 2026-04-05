@@ -230,3 +230,13 @@ Each step was documented and verified using screenshots.
 
 5. Run Python script:
    python3 scripts/insert_actions_direct.py
+
+
+
+
+   - Main Project:  
+  https://github.com/PearlRut/Group_Trips/tree/main/DBProject
+
+
+  - Backup File:  
+  https://github.com/PearlRut/Group_Trips/tree/main/DBProject/data
