@@ -3,6 +3,35 @@
 # Ruth Ulman 325442259
 # Michal Swissa 326002813
 
+
+## Table of Contents
+
+- [Introduction](#introduction)
+- [System Screens (Google AI Studio)](#system-screens-google-ai-studio)
+  - [Trips Management Screen](#trips-management-screen)
+  - [Transport Types Screen](#transport-types-screen)
+  - [Participants Management Screen](#participants-management-screen)
+  - [Guides Management Screen](#guides-management-screen)
+  - [Trips Detailed View](#trips-detailed-view)
+  - [Events Screen](#events-screen)
+  - [Schedule Screen](#schedule-screen)
+  - [Activities Screen](#activities-screen)
+- [Database Design](#database-design)
+  - [ERD Diagram](#erd-diagram)
+  - [DSD Diagram](#dsd-diagram)
+  - [Design Decisions](#design-decisions)
+- [SQL Scripts](#sql-scripts)
+- [Data Insertion Methods](#data-insertion-methods)
+  - [Manual SQL INSERT](#1-manual-sql-insert-table-actions)
+  - [Python Direct Insertion](#2-python-direct-insertion-table-actions)
+  - [CSV File Insertion](#3-csv-file-insertion-table-routes)
+  - [External Data Source – Mockaroo](#4-external-data-source--mockaroo-table-participants)
+- [Backup & Restore](#backup--restore)
+- [Summary](#summary)
+- [Project Structure](#project-structure)
+- [How to Run the Project](#how-to-run-the-project)
+
+
 ## Introduction
 
 This project presents the design and implementation of a relational database system for managing organized group trips.
@@ -155,6 +184,7 @@ We generated a large dataset of participants using the Mockaroo platform and imp
 This allowed us to efficiently populate the `participants` table with realistic test data.
 
 ![Mockaroo Data](images/mockaroo.png)
+![Mockaroo Data](images/mockaroo_web.png)
 
 After the import, we verified that the table contains 20,500 records.
 
@@ -213,7 +243,6 @@ Each step was documented and verified using screenshots.
 
 
 
-
 ## How to Run the Project
 
 1. Start the database using Docker:
@@ -231,15 +260,29 @@ Each step was documented and verified using screenshots.
 5. Run Python script:
    python3 scripts/insert_actions_direct.py
 
+   
+
+## Project Resources
+
+- Main Project:  
+  https://github.com/PearlRut/phase1/tree/main/DBProject
+
+- Backup Folder (by date):  
+  https://github.com/PearlRut/phase1/tree/main/DBProject/backups/2026-04-03
+
+- Final Version (Tag):  
+  https://github.com/PearlRut/phase1/tree/v1.1
 
 
-
-   - Main Project:  
+   - Main Project:
   https://github.com/PearlRut/Group_Trips/tree/main/DBProject
-
 
   - Backup File:  
   https://github.com/PearlRut/Group_Trips/tree/main/DBProject/data
 
 - Final Version (Tag):  
   https://github.com/PearlRut/Group_Trips/tree/v1.1
+=======
+- Backup Folder (by date):
+  https://github.com/PearlRut/phase1/tree/main/DBProject/backups/2026-04-03
+>>>>>>> a71c81d (final structure: added backups folder and updated README)
