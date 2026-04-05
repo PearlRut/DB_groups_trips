@@ -240,3 +240,6 @@ Each step was documented and verified using screenshots.
 
   - Backup File:  
   https://github.com/PearlRut/Group_Trips/tree/main/DBProject/data
+
+- Final Version (Tag):  
+  https://github.com/PearlRut/Group_Trips/tree/v1.1
