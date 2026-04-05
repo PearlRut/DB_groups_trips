@@ -1,5 +1,8 @@
 # Group Trips Database System
 
+# Ruth Ulman 325442259
+# Michal Swissa 326002813
+
 ## Introduction
 
 This project presents the design and implementation of a relational database system for managing organized group trips.
@@ -47,3 +50,183 @@ Shows the timeline of activities within a trip, allowing structured planning of 
 ### Activities Screen
 Displays all activities available in the system, such as games or food-related events.
 ![Activities](images/IMG_4495.JPG)
+
+
+
+## Database Design
+
+The database schema was designed using ERDPlus and includes the main entities required for the system, their attributes, and the relationships between them.
+
+### ERD Diagram
+The Entity Relationship Diagram presents the logical design of the system, including the main entities and their relationships.
+![ERD](images/erd.png)
+
+### DSD Diagram
+The Database Schema Diagram presents the relational schema after conversion from the ERD model into database tables.
+![DSD](images/dsd.png)
+
+### Design Decisions
+The database was designed to ensure:
+- clear entity separation
+- proper use of primary and foreign keys
+- support for many-to-many relationships through linking tables
+- reduction of redundancy
+- normalization up to Third Normal Form (3NF)
+
+
+
+
+## SQL Scripts
+
+The following SQL scripts were created and used in the project:
+
+- [Create Tables](init-db/01-create-tables.sql)
+- [Drop Tables](init-db/dropTables.sql)
+- [Insert Data](init-db/insertTables.sql)
+- [Select Queries](init-db/selectAll.sql)
+- [Load Data from CSV](init-db/loadFromCsv.sql)
+
+### Additional Scripts
+- [Count Rows](init-db/countRows.sql)
+
+### Python Scripts
+- [Generate Data](scripts/generate_data.py)
+- [Insert Data Directly (Python)](scripts/insert_actions_direct.py)
+
+
+
+
+
+### Data Insertion Methods
+
+In this section, we document all three required data insertion methods, including screenshots before and after each process.
+
+---
+### Data Insertion Methods
+
+In this section, we document all required data insertion methods, including screenshots before and after each process.
+
+---
+
+#### 1. Manual SQL INSERT (Table: actions)
+
+We inserted a new record manually into the `actions` table using an SQL INSERT command.
+The inserted record included the following values: address "Tel Aviv", action type "Manual Insert", action name "Test Action Manual", and event ID 1.
+
+After executing the query, we verified the insertion by retrieving the latest records from the table and confirming that the new row was successfully added.
+
+![Manual Insert Result](images/actionsAfter.png)
+
+---
+
+#### 2. Python Direct Insertion (Table: actions)
+
+We used a Python script (`insert_actions_direct.py`) to insert data directly into the database.  
+This script programmatically inserted 500 rows into the `actions` table.
+
+After running the script, we verified the insertion by checking the total number of rows in the table and confirming that the count increased accordingly.
+
+![Python Insert](images/method_python.png)
+
+---
+
+#### 3. CSV File Insertion (Table: routes)
+
+We inserted data into the `routes` table using a CSV file and PostgreSQL COPY command.
+
+Before performing the insertion, the table contained only the original dataset:
+
+![Before CSV Insert](images/routesBefor.png)
+
+We then prepared a CSV file containing the new route data:
+
+![CSV File](images/csv.png)
+
+After executing the COPY command, the new data was successfully inserted into the table.
+
+![After CSV Insert](images/routesAfter.png)
+
+---
+
+#### 4. External Data Source – Mockaroo (Table: participants)
+
+We generated a large dataset of participants using the Mockaroo platform and imported it into the database.
+
+This allowed us to efficiently populate the `participants` table with realistic test data.
+
+![Mockaroo Data](images/mockaroo.png)
+
+After the import, we verified that the table contains 20,500 records.
+
+---
+
+### Backup & Restore
+
+#### Backup
+
+We created a full backup of the database using pgAdmin to ensure data safety and recovery capability.
+
+![Backup Step 1](images/backup1.png)
+![Backup Step 2](images/backup2.png)
+
+The backup file created:
+backup_2026-04-03.backup
+
+---
+
+#### Restore
+
+We restored the database into a separate database named `group_trips_restore` using the backup file.
+
+![Restore Step 1](images/restore1.png)
+![Restore Step 2](images/restore2.png)
+
+The restore process completed successfully, and all data was fully recovered and verified.
+
+---
+
+### Summary
+
+All required data insertion methods were successfully implemented and validated:
+
+- Manual SQL insertion into the `actions` table
+- Python-based insertion into the `actions` table
+- CSV-based insertion into the `routes` table
+- External data generation using Mockaroo for the `participants` table
+- Full database backup and restore operations
+
+Each step was documented and verified using screenshots.
+
+
+
+
+
+
+
+## Project Structure
+
+- data/ – CSV files used for data insertion
+- images/ – screenshots and diagrams
+- init-db/ – SQL scripts for database setup
+- scripts/ – Python scripts for data generation and insertion
+- README.md – project documentation
+
+
+
+
+## How to Run the Project
+
+1. Start the database using Docker:
+   docker-compose up -d
+
+2. Create tables:
+   run init-db/01-create-tables.sql
+
+3. Insert initial data:
+   run init-db/insertTables.sql
+
+4. Load CSV data:
+   run init-db/loadFromCsv.sql
+
+5. Run Python script:
+   python3 scripts/insert_actions_direct.py
