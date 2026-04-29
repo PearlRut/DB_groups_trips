@@ -243,24 +243,47 @@ Each step was documented and verified using screenshots.
 
 
 
-## How to Run the Project
+## איך להריץ את הפרויקט (לשותפים למטלה / אחרי Pull)
 
-1. Start the database using Docker:
-   docker-compose up -d
+כשמורידים את הפרויקט למחשב חדש, יש לבצע את השלבים הבאים כדי להריץ את מסד הנתונים:
 
-2. Create tables:
-   run init-db/01-create-tables.sql
+### 1. הפעלת המסד ו-pgAdmin
+1. פתחו את הטרמינל (Terminal) ונווטו לתיקייה `DBProject`.
+2. הריצו את הפקודה הבאה כדי להפעיל את PostgreSQL ו-pgAdmin:
+   ```bash
+   docker compose up -d
+   ```
+   *הערה: בזכות ההגדרות שלנו, הפקודה הזו גם תיצור את כל הטבלאות וגם תטען את כל הנתונים מקבצי ה-CSV באופן אוטומטי בהפעלה הראשונה! אין צורך להריץ סקריפטים ידנית.*
 
-3. Insert initial data:
-   run init-db/insertTables.sql
+### 2. התחברות ל-pgAdmin
+1. פתחו דפדפן והיכנסו לכתובת: [http://localhost:8080](http://localhost:8080)
+2. התחברו עם הפרטים הבאים (שמוגדרים בקובץ `.env`):
+   - **Email:** `admin@gmail.com`
+   - **Password:** `admin123`
 
-4. Load CSV data:
-   run init-db/loadFromCsv.sql
+### 3. חיבור המסד ל-pgAdmin
+אם השרת לא מוגדר מראש, יש להוסיף אותו:
+1. לחצו קליק ימני על **Servers** בתפריט השמאלי ובחרו `Register` -> `Server...`
+2. בלשונית **General**, תנו לו שם (למשל `Group Trips DB`).
+3. בלשונית **Connection**, מלאו את הפרטים:
+   - **Host name/address:** `db` (או `PostgreSQL_DB`)
+   - **Port:** `5432`
+   - **Maintenance database:** `group_trips_db`
+   - **Username:** `postgres`
+   - **Password:** `1234`
+4. לחצו **Save**. עכשיו תוכלו לראות את כל הטבלאות והנתונים.
 
-5. Run Python script:
-   python3 scripts/insert_actions_direct.py
+### 4. איך לצפות ולשחזר את הגיבוי
+יש קובץ גיבוי ששמור מקומית בנתיב: `DBProject/backups/2026-04-03/4.4.2026.backup`. כדי לטעון אותו ל-pgAdmin:
+1. ב-pgAdmin, לחצו קליק ימני על **Databases** תחת השרת שלכם ובחרו `Create` -> `Database...`
+2. קראו למסד החדש בשם `group_trips_restore` ולחצו **Save**.
+3. לחצו קליק ימני על המסד החדש `group_trips_restore` ובחרו ב- **Restore...**
+4. לחצו על הכפתור עם שלוש הנקודות/תיקייה `...` ליד השדה `Filename`.
+5. בחלון שייפתח, לחצו למעלה מימין על כפתור ה- **Upload** (חץ למעלה ⬆️).
+6. בחרו את הקובץ `4.4.2026.backup` מהמחשב שלכם והעלו אותו.
+7. סמנו את הקובץ ברשימה, לחצו **Select**, ואז לחצו **Restore**.
+8. זהו! עכשיו יש לכם גם את המסד החי וגם את מסד הגיבוי זמינים לבדיקה.
 
-   
 
 ## Project Resources
 
