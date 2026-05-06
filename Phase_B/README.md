@@ -393,3 +393,54 @@ CHECK (experience_years >= 0);
 ![constraint3 error](images/constraint3_error.png)
 
 ---
+
+
+---
+
+# Rollback And Commit
+
+## Rollback Example
+
+### תיאור
+בדוגמה זו בוצע עדכון לסטטוס של טיול בטבלת `trips`.  
+לאחר ביצוע העדכון ניתן לראות שהנתון השתנה, אך לאחר ביצוע `ROLLBACK` בסיס הנתונים חזר למצבו המקורי והעדכון בוטל.
+
+### צילום לפני
+![rollback before](images/rollback_before.png)
+
+### צילום ביצוע UPDATE
+![rollback update](images/rollback_update.png)
+
+### צילום אחרי UPDATE
+![rollback after update](images/rollback_after_update.png)
+
+### צילום ביצוע ROLLBACK
+![rollback run](images/rollback_run.png)
+
+### צילום אחרי ROLLBACK
+![rollback after](images/rollback_after.png)
+
+---
+
+## Commit Example
+
+### תיאור
+בדוגמה זו בוצע עדכון לרמת הקושי של מסלול בטבלת `routes`.  
+לאחר ביצוע `COMMIT` השינוי נשמר באופן קבוע בבסיס הנתונים ולכן גם לאחר סיום הטרנזקציה הנתון נשאר מעודכן.
+
+### צילום לפני
+![commit before](images/commit_before.png)
+
+### צילום ביצוע UPDATE
+![commit update](images/commit_update.png)
+
+### צילום אחרי UPDATE
+![commit after update](images/commit_after_update.png)
+
+### צילום ביצוע COMMIT
+![commit run](images/commit_run.png)
+
+### צילום אחרי COMMIT
+![commit after](images/commit_after.png)
+
+---
