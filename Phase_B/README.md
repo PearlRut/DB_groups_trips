@@ -444,3 +444,89 @@ CHECK (experience_years >= 0);
 ![commit after](images/commit_after.png)
 
 ---
+
+
+---
+
+# Indexes
+
+## Index 1 - trip_participants(trip_id)
+
+### תיאור
+נוסף אינדקס על העמודה `trip_id` בטבלת `trip_participants`.  
+האינדקס נועד לייעל חיפושים של משתתפים לפי טיול, פעולה שנדרשת במסכי טיולים והרשמות.
+
+### קוד
+```sql
+CREATE INDEX idx_trip_participants_trip_id
+ON trip_participants(trip_id);
+```
+
+### צילום לפני הוספת האינדקס
+![index1 before](images/index1_before.png)
+
+### צילום יצירת האינדקס
+![index1 create](images/index1_create.png)
+
+### צילום אחרי הוספת האינדקס
+![index1 after](images/index1_after.png)
+
+### הסבר תוצאה
+לאחר יצירת האינדקס ניתן לראות ש-PostgreSQL משתמש ב-`Bitmap Index Scan` על האינדקס `idx_trip_participants_trip_id`.  
+השיפור בזמן הריצה יכול להיות קטן כי לטבלה כבר קיים אינדקס פנימי בעקבות מפתח ראשי, אך האינדקס עדיין מתאים לשאילתות שמסננות לפי `trip_id`.
+
+---
+
+## Index 2 - events(event_date)
+
+### תיאור
+נוסף אינדקס על העמודה `event_date` בטבלת `events`.  
+האינדקס נועד לייעל חיפושים וסינונים לפי תאריך אירוע, בעיקר במסכים שמציגים אירועים עתידיים או דוחות לפי תאריכים.
+
+### קוד
+```sql
+CREATE INDEX idx_events_event_date
+ON events(event_date);
+```
+
+### צילום לפני הוספת האינדקס
+![index2 before](images/index2_before.png)
+
+### צילום יצירת האינדקס
+![index2 create](images/index2_create.png)
+
+### צילום אחרי הוספת האינדקס
+![index2 after](images/index2_after.png)
+
+### הסבר תוצאה
+האינדקס יכול לשפר שאילתות שמסננות אירועים לפי תאריך, במיוחד כאשר טבלת האירועים גדולה.  
+אם השיפור קטן, הסיבה היא שהטבלה אינה גדולה מאוד או שהתנאי מחזיר אחוז גבוה מהשורות, ולכן PostgreSQL עשוי להעדיף סריקה רגילה של הטבלה.
+
+---
+
+## Index 3 - routes(difficulty_level)
+
+### תיאור
+נוסף אינדקס על העמודה `difficulty_level` בטבלת `routes`.  
+האינדקס נועד לייעל סינון מסלולים לפי רמת קושי, למשל במסך שמציג טיולים לפי מסלולים קלים, בינוניים או קשים.
+
+### קוד
+```sql
+CREATE INDEX idx_routes_difficulty_level
+ON routes(difficulty_level);
+```
+
+### צילום לפני הוספת האינדקס
+![index3 before](images/index3_before.png)
+
+### צילום יצירת האינדקס
+![index3 create](images/index3_create.png)
+
+### צילום אחרי הוספת האינדקס
+![index3 after](images/index3_after.png)
+
+### הסבר תוצאה
+האינדקס מתאים לשאילתות שמסננות לפי רמת קושי.  
+אם PostgreSQL לא תמיד משתמש בו, ייתכן שהסיבה היא שמספר הערכים האפשריים בעמודה קטן יחסית, ולכן לעיתים סריקה מלאה של הטבלה זולה יותר מאשר שימוש באינדקס.
+
+---
