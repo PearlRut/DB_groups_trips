@@ -325,3 +325,71 @@ SELECT 4B מסננת מראש רק את השורות שיש להן פעולות 
 ![delete3 rollback](images/delete3-rollback.png)
 
 ---
+
+
+---
+
+# Constraints
+
+## Constraint 1 - Positive Group Size
+
+### תיאור
+נוסף אילוץ CHECK לטבלת `trips` שמוודא שגודל הקבוצה (`group_size`) גדול מ־0.  
+האילוץ מונע יצירת טיולים עם מספר משתתפים שלילי או אפסי ושומר על תקינות הנתונים במערכת.
+
+### קוד
+```sql
+ALTER TABLE trips
+ADD CONSTRAINT chk_trips_group_size_positive
+CHECK (group_size > 0);
+```
+
+### צילום הוספת האילוץ
+![constraint1 add](images/constraint1_add.png)
+
+### צילום שגיאה
+![constraint1 error](images/constraint1_error.png)
+
+---
+
+## Constraint 2 - Non Negative Event Cost
+
+### תיאור
+נוסף אילוץ CHECK לטבלת `events` שמוודא שהעלות (`cost`) של אירוע אינה שלילית.  
+האילוץ שומר על תקינות נתוני העלויות ומונע הכנסת ערכים לא הגיוניים למערכת.
+
+### קוד
+```sql
+ALTER TABLE events
+ADD CONSTRAINT chk_events_cost_non_negative
+CHECK (cost >= 0);
+```
+
+### צילום הוספת האילוץ
+![constraint2 add](images/constraint2_add.png)
+
+### צילום שגיאה
+![constraint2 error](images/constraint2_error.png)
+
+---
+
+## Constraint 3 - Non Negative Guide Experience
+
+### תיאור
+נוסף אילוץ CHECK לטבלת `guides` שמוודא שמספר שנות הניסיון (`experience_years`) של מדריך אינו שלילי.  
+האילוץ מונע הכנסת נתונים שגויים או לא הגיוניים עבור מדריכים במערכת.
+
+### קוד
+```sql
+ALTER TABLE guides
+ADD CONSTRAINT chk_guides_experience_years_non_negative
+CHECK (experience_years >= 0);
+```
+
+### צילום הוספת האילוץ
+![constraint3 add](images/constraint3_add.png)
+
+### צילום שגיאה
+![constraint3 error](images/constraint3_error.png)
+
+---
