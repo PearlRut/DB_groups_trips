@@ -511,54 +511,50 @@ WHERE distance_km > (
 )
 ORDER BY distance_km DESC;
 
-
 -- =====================================================
 -- DELETE QUERY 1
 -- Description:
--- Delete actions that belong to cancelled events.
+-- Delete actions of type Info.
 -- =====================================================
 
 -- Before:
 SELECT
-    a.action_id,
-    a.action_name,
-    a.action_type,
-    e.event_id,
-    e.event_name,
-    e.status
-FROM actions a
-JOIN events e ON a.event_id = e.event_id
-WHERE LOWER(e.status) = 'cancelled';
+    action_id,
+    action_name,
+    action_type,
+    address,
+    event_id
+FROM actions
+WHERE LOWER(action_type) = 'info'
+LIMIT 10;
 
 -- Delete:
-DELETE FROM actions a
-USING events e
-WHERE a.event_id = e.event_id
-  AND LOWER(e.status) = 'cancelled';
+DELETE FROM actions
+WHERE LOWER(action_type) = 'info';
 
 -- After:
 SELECT
-    a.action_id,
-    a.action_name,
-    a.action_type,
-    e.event_id,
-    e.event_name,
-    e.status
-FROM actions a
-JOIN events e ON a.event_id = e.event_id
-WHERE LOWER(e.status) = 'cancelled';
+    action_id,
+    action_name,
+    action_type,
+    address,
+    event_id
+FROM actions
+WHERE LOWER(action_type) = 'info'
+LIMIT 10;
 
 
 -- =====================================================
 -- DELETE QUERY 2
 -- Description:
--- Delete participants from trips that were cancelled.
+-- Delete participants from trips that already ended.
 -- =====================================================
 
 -- Before:
 SELECT
     tp.trip_id,
     t.trip_name,
+    t.end_date,
     t.status,
     tp.participant_id,
     p.first_name,
@@ -566,19 +562,21 @@ SELECT
 FROM trip_participants tp
 JOIN trips t ON tp.trip_id = t.trip_id
 JOIN participants p ON tp.participant_id = p.participant_id
-WHERE LOWER(t.status) = 'cancelled'
-ORDER BY t.trip_id, p.last_name;
+WHERE t.end_date < CURRENT_DATE
+ORDER BY t.end_date, t.trip_id
+LIMIT 10;
 
 -- Delete:
 DELETE FROM trip_participants tp
 USING trips t
 WHERE tp.trip_id = t.trip_id
-  AND LOWER(t.status) = 'cancelled';
+  AND t.end_date < CURRENT_DATE;
 
 -- After:
 SELECT
     tp.trip_id,
     t.trip_name,
+    t.end_date,
     t.status,
     tp.participant_id,
     p.first_name,
@@ -586,58 +584,49 @@ SELECT
 FROM trip_participants tp
 JOIN trips t ON tp.trip_id = t.trip_id
 JOIN participants p ON tp.participant_id = p.participant_id
-WHERE LOWER(t.status) = 'cancelled'
-ORDER BY t.trip_id, p.last_name;
+WHERE t.end_date < CURRENT_DATE
+ORDER BY t.end_date, t.trip_id
+LIMIT 10;
 
 
 -- =====================================================
 -- DELETE QUERY 3
 -- Description:
--- Delete events that do not have any related action
--- and are connected to past trips.
+-- Delete actions that are connected to events whose cost is lower than 100.
 -- =====================================================
 
 -- Before:
 SELECT
-    e.event_id,
-    e.event_name,
-    e.event_date,
-    t.trip_name,
-    t.end_date
-FROM events e
-JOIN trips t ON e.trip_id = t.trip_id
-WHERE t.end_date < CURRENT_DATE
-  AND NOT EXISTS (
-      SELECT 1
-      FROM actions a
-      WHERE a.event_id = e.event_id
-  )
-ORDER BY e.event_date;
+    action_id,
+    action_name,
+    action_type,
+    event_id
+FROM actions
+WHERE event_id IN (
+    SELECT event_id
+    FROM events
+    WHERE cost < 100
+)
+LIMIT 10;
 
 -- Delete:
-DELETE FROM events e
-USING trips t
-WHERE e.trip_id = t.trip_id
-  AND t.end_date < CURRENT_DATE
-  AND NOT EXISTS (
-      SELECT 1
-      FROM actions a
-      WHERE a.event_id = e.event_id
-  );
+DELETE FROM actions
+WHERE event_id IN (
+    SELECT event_id
+    FROM events
+    WHERE cost < 100
+);
 
 -- After:
 SELECT
-    e.event_id,
-    e.event_name,
-    e.event_date,
-    t.trip_name,
-    t.end_date
-FROM events e
-JOIN trips t ON e.trip_id = t.trip_id
-WHERE t.end_date < CURRENT_DATE
-  AND NOT EXISTS (
-      SELECT 1
-      FROM actions a
-      WHERE a.event_id = e.event_id
-  )
-ORDER BY e.event_date;
+    action_id,
+    action_name,
+    action_type,
+    event_id
+FROM actions
+WHERE event_id IN (
+    SELECT event_id
+    FROM events
+    WHERE cost < 100
+)
+LIMIT 10;
