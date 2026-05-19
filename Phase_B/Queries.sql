@@ -20,20 +20,21 @@ SELECT
     t.group_size,
     COUNT(tp.participant_id) AS registered_participants,
     t.group_size - COUNT(tp.participant_id) AS available_places,
-    t.status
+    t.status,
+    (
+        SELECT SUM(t2.group_size)
+        FROM trips t2
+        JOIN routes r2 ON t2.route_id = r2.route_id
+        WHERE r2.region = r.region
+    ) AS total_group_size_in_region,
+    COUNT(t.trip_id) OVER (PARTITION BY r.region) AS total_trips_in_this_region
 FROM trips t
 JOIN routes r ON t.route_id = r.route_id
 JOIN transport_types tt ON t.transport_type_id = tt.transport_type_id
 LEFT JOIN trip_participants tp ON t.trip_id = tp.trip_id
 GROUP BY
-    t.trip_id,
-    t.trip_name,
-    r.route_name,
-    r.region,
-    tt.transport_type_name,
-    t.group_size,
-    t.status
-ORDER BY registered_participants DESC, t.trip_name;
+    
+
 
 
 -- =====================================================
