@@ -6,13 +6,13 @@
         "id": "89a148cc-258b-484c-ae4f-4e8e6adc7700",
         "type": "Entity",
         "position": {
-          "x": 176.451068287199,
-          "y": -1.4361942805571033
+          "x": -497.548931712801,
+          "y": -601.4361942805572
         },
         "data": {
           "label": "Trip",
           "type": "Regular",
-          "isConnectable": true,
+          "isConnectable": false,
           "isSelected": false
         },
         "measured": {
@@ -27,8 +27,8 @@
         "parentId": "89a148cc-258b-484c-ae4f-4e8e6adc7700",
         "type": "Attribute",
         "position": {
-          "x": -107.0516622500059,
-          "y": -64.30305478199804
+          "x": -181.0516622500059,
+          "y": -56.30305478199804
         },
         "data": {
           "label": "TripID",
@@ -36,7 +36,7 @@
             "Unique": true
           },
           "isSelected": false,
-          "isConnectable": true
+          "isConnectable": false
         },
         "measured": {
           "width": 100,
@@ -50,14 +50,14 @@
         "parentId": "89a148cc-258b-484c-ae4f-4e8e6adc7700",
         "type": "Attribute",
         "position": {
-          "x": -90.22306524630952,
-          "y": -127.86318347361583
+          "x": -172.22306524630952,
+          "y": -125.86318347361585
         },
         "data": {
           "label": "TripName",
           "types": [],
           "isSelected": false,
-          "isConnectable": true
+          "isConnectable": false
         },
         "measured": {
           "width": 100,
@@ -71,14 +71,14 @@
         "parentId": "89a148cc-258b-484c-ae4f-4e8e6adc7700",
         "type": "Attribute",
         "position": {
-          "x": -5.79595692600418,
-          "y": -95.47223724400368
+          "x": -63.79595692600418,
+          "y": -111.47223724400368
         },
         "data": {
           "label": "StartDate",
           "types": [],
           "isSelected": false,
-          "isConnectable": true
+          "isConnectable": false
         },
         "measured": {
           "width": 100,
@@ -92,14 +92,14 @@
         "parentId": "89a148cc-258b-484c-ae4f-4e8e6adc7700",
         "type": "Attribute",
         "position": {
-          "x": 74.4341384767809,
-          "y": -140.40673736914385
+          "x": -69.5658615232191,
+          "y": -176.40673736914385
         },
         "data": {
           "label": "EndDate",
           "types": [],
           "isSelected": false,
-          "isConnectable": true
+          "isConnectable": false
         },
         "measured": {
           "width": 100,
@@ -113,14 +113,14 @@
         "parentId": "89a148cc-258b-484c-ae4f-4e8e6adc7700",
         "type": "Attribute",
         "position": {
-          "x": 114,
-          "y": -85
+          "x": 38,
+          "y": -147
         },
         "data": {
           "label": "GroupSize",
           "types": [],
           "isSelected": false,
-          "isConnectable": true
+          "isConnectable": false
         },
         "measured": {
           "width": 100,
@@ -134,14 +134,14 @@
         "parentId": "89a148cc-258b-484c-ae4f-4e8e6adc7700",
         "type": "Attribute",
         "position": {
-          "x": 231.75378797541254,
+          "x": 97.75378797541254,
           "y": -93.7537879754125
         },
         "data": {
           "label": "Status",
           "types": [],
           "isSelected": false,
-          "isConnectable": true
+          "isConnectable": false
         },
         "measured": {
           "width": 100,
@@ -154,13 +154,13 @@
         "id": "4a89e2be-89cc-4e52-9249-06bbac3d0827",
         "type": "Entity",
         "position": {
-          "x": -510.35676954458813,
-          "y": 94.97195139029031
+          "x": -1022.3567695445881,
+          "y": -61.028048609709685
         },
         "data": {
           "label": "Route",
           "type": "Regular",
-          "isConnectable": true,
+          "isConnectable": false,
           "isSelected": false
         },
         "measured": {
@@ -184,7 +184,7 @@
             "Unique": true
           },
           "isSelected": false,
-          "isConnectable": true
+          "isConnectable": false
         },
         "measured": {
           "width": 100,
@@ -205,7 +205,7 @@
           "label": "RouteName",
           "types": [],
           "isSelected": false,
-          "isConnectable": true
+          "isConnectable": false
         },
         "measured": {
           "width": 100,
@@ -226,7 +226,7 @@
           "label": "Region",
           "types": [],
           "isSelected": false,
-          "isConnectable": true
+          "isConnectable": false
         },
         "measured": {
           "width": 100,
@@ -247,7 +247,7 @@
           "label": "DistanceKM",
           "types": [],
           "isSelected": false,
-          "isConnectable": true
+          "isConnectable": false
         },
         "measured": {
           "width": 100,
@@ -268,7 +268,7 @@
           "label": "DurationHours",
           "types": [],
           "isSelected": false,
-          "isConnectable": true
+          "isConnectable": false
         },
         "measured": {
           "width": 100,
@@ -289,7 +289,7 @@
           "label": "DifficultyLevel",
           "types": [],
           "isSelected": false,
-          "isConnectable": true
+          "isConnectable": false
         },
         "measured": {
           "width": 100,
@@ -302,13 +302,13 @@
         "id": "5e3d36c1-f6cc-4433-bbc7-086c0d9f8c25",
         "type": "Entity",
         "position": {
-          "x": 192.593189819506,
-          "y": 259.62194556785266
+          "x": 86.593189819506,
+          "y": 89.62194556785266
         },
         "data": {
           "label": "Schedule",
           "type": "Weak",
-          "isConnectable": true,
+          "isConnectable": false,
           "isSelected": false
         },
         "measured": {
@@ -333,7 +333,7 @@
             "Partially Unique": true
           },
           "isSelected": false,
-          "isConnectable": true
+          "isConnectable": false
         },
         "measured": {
           "width": 100,
@@ -354,7 +354,7 @@
           "label": "StartTime",
           "types": [],
           "isSelected": false,
-          "isConnectable": true
+          "isConnectable": false
         },
         "measured": {
           "width": 100,
@@ -375,7 +375,7 @@
           "label": "EndTime",
           "types": [],
           "isSelected": false,
-          "isConnectable": true
+          "isConnectable": false
         },
         "measured": {
           "width": 100,
@@ -388,13 +388,13 @@
         "id": "0c8bd37e-48d6-44dc-b548-173338ede0af",
         "type": "Entity",
         "position": {
-          "x": -145.08051289452484,
-          "y": 462.769676525764
+          "x": -621.0805128945249,
+          "y": 366.769676525764
         },
         "data": {
           "label": "Event",
           "type": "Regular",
-          "isConnectable": true,
+          "isConnectable": false,
           "isSelected": false
         },
         "measured": {
@@ -418,7 +418,7 @@
             "Unique": true
           },
           "isSelected": false,
-          "isConnectable": true
+          "isConnectable": false
         },
         "measured": {
           "width": 100,
@@ -439,7 +439,7 @@
           "label": "EventName",
           "types": [],
           "isSelected": false,
-          "isConnectable": true
+          "isConnectable": false
         },
         "measured": {
           "width": 100,
@@ -460,7 +460,7 @@
           "label": "EventDate",
           "types": [],
           "isSelected": false,
-          "isConnectable": true
+          "isConnectable": false
         },
         "measured": {
           "width": 100,
@@ -481,7 +481,7 @@
           "label": "StartHour",
           "types": [],
           "isSelected": false,
-          "isConnectable": true
+          "isConnectable": false
         },
         "measured": {
           "width": 100,
@@ -502,7 +502,7 @@
           "label": "EndHour",
           "types": [],
           "isSelected": false,
-          "isConnectable": true
+          "isConnectable": false
         },
         "measured": {
           "width": 100,
@@ -523,7 +523,7 @@
           "label": "Cost",
           "types": [],
           "isSelected": false,
-          "isConnectable": true
+          "isConnectable": false
         },
         "measured": {
           "width": 100,
@@ -536,20 +536,20 @@
         "id": "96306532-8090-46e4-bc7a-1cf0619ff1d1",
         "type": "Entity",
         "position": {
-          "x": 559.7855709872576,
-          "y": 461.9157084100082
+          "x": 543.7855709872576,
+          "y": 311.9157084100082
         },
         "data": {
           "label": "action",
           "type": "Regular",
-          "isConnectable": true,
+          "isConnectable": false,
           "isSelected": false
         },
         "measured": {
           "width": 100,
           "height": 50
         },
-        "selected": false,
+        "selected": true,
         "dragging": false
       },
       {
@@ -566,7 +566,7 @@
             "Unique": true
           },
           "isSelected": false,
-          "isConnectable": true
+          "isConnectable": false
         },
         "measured": {
           "width": 100,
@@ -587,7 +587,7 @@
           "label": "address",
           "types": [],
           "isSelected": false,
-          "isConnectable": true
+          "isConnectable": false
         },
         "measured": {
           "width": 100,
@@ -608,7 +608,7 @@
           "label": "action_type",
           "types": [],
           "isSelected": false,
-          "isConnectable": true
+          "isConnectable": false
         },
         "measured": {
           "width": 100,
@@ -621,13 +621,13 @@
         "id": "700e5a5c-a844-4f2a-989f-6a99eb82c047",
         "type": "Entity",
         "position": {
-          "x": 900.4717842831842,
-          "y": -6.051712001925246
+          "x": 542.4717842831842,
+          "y": -208.05171200192524
         },
         "data": {
           "label": "Participant",
           "type": "Supertype",
-          "isConnectable": true,
+          "isConnectable": false,
           "isSelected": false
         },
         "measured": {
@@ -651,7 +651,7 @@
             "Unique": true
           },
           "isSelected": false,
-          "isConnectable": true
+          "isConnectable": false
         },
         "measured": {
           "width": 100,
@@ -672,7 +672,7 @@
           "label": "FirstName",
           "types": [],
           "isSelected": false,
-          "isConnectable": true
+          "isConnectable": false
         },
         "measured": {
           "width": 100,
@@ -693,7 +693,7 @@
           "label": "LastName",
           "types": [],
           "isSelected": false,
-          "isConnectable": true
+          "isConnectable": false
         },
         "measured": {
           "width": 100,
@@ -714,7 +714,7 @@
           "label": "Phone",
           "types": [],
           "isSelected": false,
-          "isConnectable": true
+          "isConnectable": false
         },
         "measured": {
           "width": 100,
@@ -735,7 +735,7 @@
           "label": "Email",
           "types": [],
           "isSelected": false,
-          "isConnectable": true
+          "isConnectable": false
         },
         "measured": {
           "width": 100,
@@ -758,7 +758,7 @@
             "Optional": false
           },
           "isSelected": false,
-          "isConnectable": true
+          "isConnectable": false
         },
         "measured": {
           "width": 100,
@@ -771,13 +771,13 @@
         "id": "c6cd1447-69b8-4a30-beee-c98abcdb229e",
         "type": "Entity",
         "position": {
-          "x": -525.0570677259046,
-          "y": 388.5744565579367
+          "x": -713.0570677259046,
+          "y": 36.574456557936685
         },
         "data": {
           "label": "TransportType",
           "type": "Regular",
-          "isConnectable": true,
+          "isConnectable": false,
           "isSelected": false
         },
         "measured": {
@@ -801,7 +801,7 @@
             "Unique": true
           },
           "isSelected": false,
-          "isConnectable": true
+          "isConnectable": false
         },
         "measured": {
           "width": 100,
@@ -822,7 +822,7 @@
           "label": "TransportTypeName",
           "types": [],
           "isSelected": false,
-          "isConnectable": true
+          "isConnectable": false
         },
         "measured": {
           "width": 100,
@@ -835,8 +835,8 @@
         "id": "eecd8cdb-67ab-4ad6-acfc-497d429c0366",
         "type": "Relationship",
         "position": {
-          "x": -186.27426261378002,
-          "y": 8.650517600405863
+          "x": -1002.27426261378,
+          "y": -329.34948239959414
         },
         "data": {
           "label": "Trip-Based-On",
@@ -851,7 +851,7 @@
             "maxCardinality": "One"
           },
           "isSelected": false,
-          "isConnectable": false
+          "isConnectable": true
         },
         "measured": {
           "width": 100,
@@ -864,8 +864,8 @@
         "id": "00a519f4-e516-4d06-8e88-9a30a020c33f",
         "type": "Relationship",
         "position": {
-          "x": 259.28388716156337,
-          "y": 450.78184051298024
+          "x": -2.7161128384366293,
+          "y": 428.78184051298024
         },
         "data": {
           "label": "Sched-Include-Action",
@@ -880,7 +880,7 @@
             "maxCardinality": "Many"
           },
           "isSelected": false,
-          "isConnectable": false
+          "isConnectable": true
         },
         "measured": {
           "width": 100,
@@ -893,8 +893,8 @@
         "id": "e7cde038-ad57-4e03-84a8-75a22dbee44b",
         "type": "Relationship",
         "position": {
-          "x": 565.6416439601956,
-          "y": -9.568008141718513
+          "x": 65.64164396019555,
+          "y": -305.5680081417185
         },
         "data": {
           "label": "Participate-In",
@@ -909,7 +909,7 @@
             "maxCardinality": "Many"
           },
           "isSelected": false,
-          "isConnectable": false
+          "isConnectable": true
         },
         "measured": {
           "width": 100,
@@ -923,32 +923,33 @@
         "parentId": "e7cde038-ad57-4e03-84a8-75a22dbee44b",
         "type": "Attribute",
         "position": {
-          "x": -6.429395695523604e-15,
-          "y": -105
+          "x": -2,
+          "y": -71
         },
         "data": {
           "label": "RegistrationStatus",
           "types": [],
           "isSelected": false,
-          "isConnectable": true
+          "isConnectable": false
         },
         "measured": {
           "width": 100,
           "height": 50
         },
-        "selected": false
+        "selected": false,
+        "dragging": false
       },
       {
         "id": "e7e2ab78-e24d-4d76-bfcc-231c480f4259",
         "type": "Entity",
         "position": {
-          "x": -0.8387958637108568,
-          "y": 132.78442951589992
+          "x": 261.16120413628914,
+          "y": 152.7844295158999
         },
         "parentId": "700e5a5c-a844-4f2a-989f-6a99eb82c047",
         "data": {
           "label": "Guide",
-          "isConnectable": true,
+          "isConnectable": false,
           "type": "Regular",
           "parentId": "700e5a5c-a844-4f2a-989f-6a99eb82c047",
           "isSelected": false
@@ -972,7 +973,7 @@
           "label": "LicenseNumber",
           "types": [],
           "isSelected": false,
-          "isConnectable": true
+          "isConnectable": false
         },
         "measured": {
           "width": 100,
@@ -993,7 +994,7 @@
           "label": "ExperienceYears",
           "types": [],
           "isSelected": false,
-          "isConnectable": true
+          "isConnectable": false
         },
         "measured": {
           "width": 100,
@@ -1006,8 +1007,8 @@
         "id": "c37e1096-acb9-4094-afff-49e7c4ecc9fd",
         "type": "Relationship",
         "position": {
-          "x": 105.21655017134609,
-          "y": 431.8009266705716
+          "x": -356.78344982865394,
+          "y": 29.800926670571585
         },
         "data": {
           "label": "Associated-Event",
@@ -1021,7 +1022,7 @@
           },
           "isSelected": false,
           "isIdentifying": true,
-          "isConnectable": false
+          "isConnectable": true
         },
         "measured": {
           "width": 100,
@@ -1042,7 +1043,7 @@
           "label": "description",
           "types": [],
           "isSelected": false,
-          "isConnectable": true
+          "isConnectable": false
         },
         "measured": {
           "width": 100,
@@ -1055,8 +1056,8 @@
         "id": "87650a11-aee2-4551-ae28-4fb688186c69",
         "type": "Relationship",
         "position": {
-          "x": 172.70617906867759,
-          "y": 130.50588278653254
+          "x": -237.29382093132244,
+          "y": -289.49411721346746
         },
         "data": {
           "label": "Sched-Include-Trip",
@@ -1071,7 +1072,7 @@
             "minCardinality": "Mandatory"
           },
           "isSelected": false,
-          "isConnectable": false
+          "isConnectable": true
         },
         "measured": {
           "width": 100,
@@ -1092,7 +1093,7 @@
           "label": "sch_date",
           "types": [],
           "isSelected": false,
-          "isConnectable": true
+          "isConnectable": false
         },
         "measured": {
           "width": 100,
@@ -1113,7 +1114,7 @@
           "label": "action_name",
           "types": [],
           "isSelected": false,
-          "isConnectable": true
+          "isConnectable": false
         },
         "measured": {
           "width": 100,
@@ -1134,7 +1135,7 @@
           "label": "status",
           "types": [],
           "isSelected": false,
-          "isConnectable": true
+          "isConnectable": false
         },
         "measured": {
           "width": 100,
@@ -1147,8 +1148,8 @@
         "id": "1bf52b5b-ce21-47b3-a83a-c062dc4cbdc0",
         "type": "Relationship",
         "position": {
-          "x": -174.3029997193528,
-          "y": 193.56913113868978
+          "x": -608.3029997193528,
+          "y": -322.4308688613102
         },
         "data": {
           "label": "Trip-Trans",
@@ -1162,27 +1163,29 @@
             "minCardinality": "Mandatory",
             "maxCardinality": "One"
           },
-          "isSelected": false
+          "isSelected": false,
+          "isConnectable": true
         },
         "measured": {
           "width": 100,
           "height": 50
         },
-        "selected": false
+        "selected": false,
+        "dragging": false
       },
       {
         "id": "e9fdb6ad-7060-40fa-a9fe-9ffad81120f9",
         "parentId": "89a148cc-258b-484c-ae4f-4e8e6adc7700",
         "type": "Attribute",
         "position": {
-          "x": 893.2785871715321,
-          "y": -281.97316082888733
+          "x": 31.278587171532024,
+          "y": -207.9731608288874
         },
         "data": {
           "label": "TripType",
           "types": [],
           "isSelected": false,
-          "isConnectable": true
+          "isConnectable": false
         },
         "measured": {
           "width": 100,
@@ -1195,13 +1198,13 @@
         "id": "039a1c2d-47b1-40db-bd07-ba6f35c24f95",
         "type": "Entity",
         "position": {
-          "x": 922.7249461958636,
-          "y": -176.1638891428816
+          "x": -173.2750538041364,
+          "y": -896.1638891428815
         },
         "data": {
           "label": "Location",
           "type": "Regular",
-          "isConnectable": true,
+          "isConnectable": false,
           "isSelected": false
         },
         "measured": {
@@ -1215,13 +1218,13 @@
         "id": "779cf444-0c43-415d-882b-4189d377727a",
         "type": "Entity",
         "position": {
-          "x": 835.5323411667564,
-          "y": -410.04587761995833
+          "x": 563.5323411667564,
+          "y": -860.0458776199583
         },
         "data": {
           "label": "Transportation",
           "type": "Regular",
-          "isConnectable": true,
+          "isConnectable": false,
           "isSelected": false
         },
         "measured": {
@@ -1235,13 +1238,13 @@
         "id": "dab6da47-3763-4496-9286-d86df9979e05",
         "type": "Entity",
         "position": {
-          "x": 587.023197513174,
-          "y": -154.1494529665439
+          "x": 597.023197513174,
+          "y": -530.1494529665439
         },
         "data": {
           "label": "Supplier",
           "type": "Regular",
-          "isConnectable": true,
+          "isConnectable": false,
           "isSelected": false
         },
         "measured": {
@@ -1255,13 +1258,13 @@
         "id": "f29196fa-3b29-49b8-9e77-2ace1303361f",
         "type": "Entity",
         "position": {
-          "x": 2064.7256106594796,
-          "y": -135.0776880946471
+          "x": 1100.7256106594796,
+          "y": -507.0776880946471
         },
         "data": {
           "label": "Equipment",
           "type": "Regular",
-          "isConnectable": true,
+          "isConnectable": false,
           "isSelected": false
         },
         "measured": {
@@ -1276,8 +1279,8 @@
         "parentId": "039a1c2d-47b1-40db-bd07-ba6f35c24f95",
         "type": "Attribute",
         "position": {
-          "x": 1139.4403708626905,
-          "y": -350.39935489009224
+          "x": 207.44037086269032,
+          "y": -88.3993548900923
         },
         "data": {
           "label": "LocationID",
@@ -1286,7 +1289,7 @@
             "Partially Unique": false
           },
           "isSelected": false,
-          "isConnectable": true
+          "isConnectable": false
         },
         "measured": {
           "width": 100,
@@ -1300,14 +1303,14 @@
         "parentId": "039a1c2d-47b1-40db-bd07-ba6f35c24f95",
         "type": "Attribute",
         "position": {
-          "x": 1060.3897123092984,
-          "y": -300.97767496104206
+          "x": 146.38971230929837,
+          "y": -20.977674961042055
         },
         "data": {
           "label": "LocationName",
           "types": [],
           "isSelected": false,
-          "isConnectable": true
+          "isConnectable": false
         },
         "measured": {
           "width": 100,
@@ -1321,14 +1324,14 @@
         "parentId": "039a1c2d-47b1-40db-bd07-ba6f35c24f95",
         "type": "Attribute",
         "position": {
-          "x": 908.8084640792702,
-          "y": -327.42583585320676
+          "x": 100.80846407927015,
+          "y": -89.42583585320676
         },
         "data": {
           "label": "Region",
           "types": [],
           "isSelected": false,
-          "isConnectable": true
+          "isConnectable": false
         },
         "measured": {
           "width": 100,
@@ -1342,14 +1345,14 @@
         "parentId": "039a1c2d-47b1-40db-bd07-ba6f35c24f95",
         "type": "Attribute",
         "position": {
-          "x": 1163.5949950358083,
-          "y": -417.5529119459346
+          "x": 89.59499503580787,
+          "y": -147.55291194593468
         },
         "data": {
           "label": "Address",
           "types": [],
           "isSelected": false,
-          "isConnectable": true
+          "isConnectable": false
         },
         "measured": {
           "width": 100,
@@ -1363,14 +1366,14 @@
         "parentId": "039a1c2d-47b1-40db-bd07-ba6f35c24f95",
         "type": "Attribute",
         "position": {
-          "x": 851.3768135857604,
-          "y": -410.72081514831916
+          "x": 1.3768135857603738,
+          "y": -98.7208151483191
         },
         "data": {
           "label": "Description",
           "types": [],
           "isSelected": false,
-          "isConnectable": true
+          "isConnectable": false
         },
         "measured": {
           "width": 100,
@@ -1384,8 +1387,8 @@
         "parentId": "779cf444-0c43-415d-882b-4189d377727a",
         "type": "Attribute",
         "position": {
-          "x": 828.8792123956889,
-          "y": -460.72174454027174
+          "x": -77.12078760431109,
+          "y": -122.72174454027174
         },
         "data": {
           "label": "TransportID",
@@ -1393,7 +1396,7 @@
             "Unique": true
           },
           "isSelected": false,
-          "isConnectable": true
+          "isConnectable": false
         },
         "measured": {
           "width": 100,
@@ -1407,14 +1410,14 @@
         "parentId": "779cf444-0c43-415d-882b-4189d377727a",
         "type": "Attribute",
         "position": {
-          "x": 1016.9328095276805,
-          "y": -538.266397001815
+          "x": 136.93280952768055,
+          "y": -50.266397001814994
         },
         "data": {
           "label": "VehicleType",
           "types": [],
           "isSelected": false,
-          "isConnectable": true
+          "isConnectable": false
         },
         "measured": {
           "width": 100,
@@ -1428,14 +1431,14 @@
         "parentId": "779cf444-0c43-415d-882b-4189d377727a",
         "type": "Attribute",
         "position": {
-          "x": 893.089161554011,
-          "y": -527.0475414611097
+          "x": 37.08916155401084,
+          "y": -115.04754146110974
         },
         "data": {
           "label": "Capacity",
           "types": [],
           "isSelected": false,
-          "isConnectable": true
+          "isConnectable": false
         },
         "measured": {
           "width": 100,
@@ -1449,8 +1452,8 @@
         "parentId": "dab6da47-3763-4496-9286-d86df9979e05",
         "type": "Attribute",
         "position": {
-          "x": 911.9688862423643,
-          "y": -301.10825734322333
+          "x": -124.0311137576357,
+          "y": -85.10825734322333
         },
         "data": {
           "label": "SupplierID",
@@ -1462,7 +1465,7 @@
             "Derived": false
           },
           "isSelected": false,
-          "isConnectable": true
+          "isConnectable": false
         },
         "measured": {
           "width": 100,
@@ -1476,14 +1479,14 @@
         "parentId": "dab6da47-3763-4496-9286-d86df9979e05",
         "type": "Attribute",
         "position": {
-          "x": 884.9003819948497,
-          "y": -390.83689898609055
+          "x": 34.90038199484957,
+          "y": -110.83689898609055
         },
         "data": {
           "label": "CompanyName",
           "types": [],
           "isSelected": false,
-          "isConnectable": true
+          "isConnectable": false
         },
         "measured": {
           "width": 100,
@@ -1497,14 +1500,14 @@
         "parentId": "dab6da47-3763-4496-9286-d86df9979e05",
         "type": "Attribute",
         "position": {
-          "x": 1007.2161056284432,
-          "y": -237.12649150221534
+          "x": 129.2161056284433,
+          "y": -17.126491502215345
         },
         "data": {
           "label": "ServiceType",
           "types": [],
           "isSelected": false,
-          "isConnectable": true
+          "isConnectable": false
         },
         "measured": {
           "width": 100,
@@ -1518,14 +1521,14 @@
         "parentId": "dab6da47-3763-4496-9286-d86df9979e05",
         "type": "Attribute",
         "position": {
-          "x": 899.6194634578292,
-          "y": -476.97695168270843
+          "x": 143.61946345782917,
+          "y": -82.97695168270843
         },
         "data": {
           "label": "ContactPhone",
           "types": [],
           "isSelected": false,
-          "isConnectable": true
+          "isConnectable": false
         },
         "measured": {
           "width": 100,
@@ -1539,8 +1542,8 @@
         "parentId": "f29196fa-3b29-49b8-9e77-2ace1303361f",
         "type": "Attribute",
         "position": {
-          "x": 1108.2625070703778,
-          "y": -312.6252620961192
+          "x": 154.26250707037798,
+          "y": 9.374737903880828
         },
         "data": {
           "label": "EquipmentID",
@@ -1548,7 +1551,7 @@
             "Unique": true
           },
           "isSelected": false,
-          "isConnectable": true
+          "isConnectable": false
         },
         "measured": {
           "width": 100,
@@ -1562,14 +1565,14 @@
         "parentId": "f29196fa-3b29-49b8-9e77-2ace1303361f",
         "type": "Attribute",
         "position": {
-          "x": 1155.8662609379073,
-          "y": -387.92152649070545
+          "x": 205.8662609379071,
+          "y": -41.921526490705446
         },
         "data": {
           "label": "ItemName",
           "types": [],
           "isSelected": false,
-          "isConnectable": true
+          "isConnectable": false
         },
         "measured": {
           "width": 100,
@@ -1583,14 +1586,14 @@
         "parentId": "f29196fa-3b29-49b8-9e77-2ace1303361f",
         "type": "Attribute",
         "position": {
-          "x": 1122.737610056235,
-          "y": -459.3069344141052
+          "x": 90.7376100562351,
+          "y": -63.30693441410517
         },
         "data": {
           "label": "TotalInStock",
           "types": [],
           "isSelected": false,
-          "isConnectable": true
+          "isConnectable": false
         },
         "measured": {
           "width": 100,
@@ -1603,8 +1606,8 @@
         "id": "ddbc3258-ca2a-4a79-9525-5b13c968dcce",
         "type": "Relationship",
         "position": {
-          "x": 649.8942733482825,
-          "y": -272.1253365487937
+          "x": 943.8942733482825,
+          "y": -804.1253365487937
         },
         "data": {
           "label": "Provided By",
@@ -1618,7 +1621,7 @@
           },
           "isSelected": false,
           "isIdentifying": false,
-          "isConnectable": false
+          "isConnectable": true
         },
         "measured": {
           "width": 100,
@@ -1631,8 +1634,8 @@
         "id": "88d82d61-af81-458d-a88c-40ca6dc85587",
         "type": "Relationship",
         "position": {
-          "x": 1886.7097477157558,
-          "y": -143.99254607133122
+          "x": 744.7097477157558,
+          "y": -331.99254607133116
         },
         "data": {
           "label": "TripEquipment",
@@ -1645,7 +1648,7 @@
             "maxCardinality": "Many"
           },
           "isSelected": false,
-          "isConnectable": false
+          "isConnectable": true
         },
         "measured": {
           "width": 100,
@@ -1658,8 +1661,8 @@
         "id": "39493cf2-4359-452f-9bb8-18900c1a9895",
         "type": "Relationship",
         "position": {
-          "x": 1249.2331763067723,
-          "y": -133.79254143919542
+          "x": -204.7668236932277,
+          "y": -727.7925414391955
         },
         "data": {
           "label": "Location_Trip",
@@ -1672,7 +1675,7 @@
             "maxCardinality": "Many"
           },
           "isSelected": false,
-          "isConnectable": false
+          "isConnectable": true
         },
         "measured": {
           "width": 100,
@@ -1685,8 +1688,8 @@
         "id": "ca7ec5ff-a595-46cd-9ad9-9317f44d924c",
         "type": "Relationship",
         "position": {
-          "x": 1378.4393908969846,
-          "y": 201.72228064314265
+          "x": 1174.4393908969846,
+          "y": -672.2777193568573
         },
         "data": {
           "label": "Provided By",
@@ -1698,7 +1701,8 @@
             "id": "dab6da47-3763-4496-9286-d86df9979e05",
             "maxCardinality": "One"
           },
-          "isSelected": false
+          "isSelected": false,
+          "isConnectable": true
         },
         "measured": {
           "width": 100,
@@ -1711,8 +1715,8 @@
         "id": "6313a252-36af-4a86-b976-473f796b9283",
         "type": "Relationship",
         "position": {
-          "x": 1147.4841058150237,
-          "y": -341.3619742421963
+          "x": 156.98410581502367,
+          "y": -709.3619742421963
         },
         "data": {
           "label": "Trip Transportation",
@@ -1724,7 +1728,8 @@
             "id": "89a148cc-258b-484c-ae4f-4e8e6adc7700",
             "maxCardinality": "Many"
           },
-          "isSelected": false
+          "isSelected": false,
+          "isConnectable": true
         },
         "measured": {
           "width": 100,
@@ -1738,34 +1743,35 @@
         "parentId": "88d82d61-af81-458d-a88c-40ca6dc85587",
         "type": "Attribute",
         "position": {
-          "x": 1000.0,
-          "y": -505
+          "x": 30,
+          "y": -86.99999999999994
         },
         "data": {
           "label": "QuantityAllocated",
           "types": [],
           "isSelected": false,
-          "isConnectable": false
+          "isConnectable": true
         },
         "measured": {
           "width": 100,
           "height": 50
         },
-        "selected": false
+        "selected": false,
+        "dragging": false
       },
       {
         "id": "1a13b62a-8af1-4b26-80cb-63459c3acbfe",
         "parentId": "88d82d61-af81-458d-a88c-40ca6dc85587",
         "type": "Attribute",
         "position": {
-          "x": 1114.2458525522115,
-          "y": -477.57951540188947
+          "x": -77.75414744778845,
+          "y": -59.57951540188941
         },
         "data": {
           "label": "Checkout_Date",
           "types": [],
           "isSelected": false,
-          "isConnectable": false
+          "isConnectable": true
         },
         "measured": {
           "width": 100,
@@ -1779,14 +1785,14 @@
         "parentId": "88d82d61-af81-458d-a88c-40ca6dc85587",
         "type": "Attribute",
         "position": {
-          "x": 891.6685838526724,
-          "y": -556.6652587331937
+          "x": 125.66858385267233,
+          "y": -38.665258733193696
         },
         "data": {
           "label": "Return_Date",
           "types": [],
           "isSelected": false,
-          "isConnectable": false
+          "isConnectable": true
         },
         "measured": {
           "width": 100,
@@ -1800,14 +1806,14 @@
         "parentId": "39493cf2-4359-452f-9bb8-18900c1a9895",
         "type": "Attribute",
         "position": {
-          "x": 958.5036098966891,
-          "y": -491.51367321642397
+          "x": 80.50360989668911,
+          "y": -53.51367321642397
         },
         "data": {
           "label": "Location order",
           "types": [],
           "isSelected": false,
-          "isConnectable": false
+          "isConnectable": true
         },
         "measured": {
           "width": 100,
@@ -1821,32 +1827,35 @@
         "parentId": "6313a252-36af-4a86-b976-473f796b9283",
         "type": "Attribute",
         "position": {
-          "x": 1000.0,
-          "y": -505
+          "x": 48,
+          "y": -61
         },
         "data": {
           "label": "Departure Date Time",
           "types": [],
-          "isSelected": false
+          "isSelected": false,
+          "isConnectable": true
         },
         "measured": {
           "width": 100,
           "height": 50
         },
-        "selected": false
+        "selected": false,
+        "dragging": false
       },
       {
         "id": "8efad476-e2b0-4cb6-99ae-a7fa9a3eae2f",
         "parentId": "6313a252-36af-4a86-b976-473f796b9283",
         "type": "Attribute",
         "position": {
-          "x": 1093.317513724721,
-          "y": -453.9034902111116
+          "x": -98.68248627527896,
+          "y": -53.9034902111116
         },
         "data": {
           "label": "Arrival Date Time",
           "types": [],
-          "isSelected": false
+          "isSelected": false,
+          "isConnectable": true
         },
         "measured": {
           "width": 100,
@@ -1945,7 +1954,8 @@
         "id": "4f5ed875-d5b0-4e77-9f72-78d03e6f3579",
         "type": "Attribute",
         "source": "5e3d36c1-f6cc-4433-bbc7-086c0d9f8c25",
-        "target": "b83427a5-3e92-4022-b866-0e40d8dd62eb"
+        "target": "b83427a5-3e92-4022-b866-0e40d8dd62eb",
+        "selected": false
       },
       {
         "id": "726d9ace-3054-4f11-8f9f-364a5dbf205a",
@@ -2535,12 +2545,12 @@
       }
     ],
     "viewport": {
-      "x": 566.7258181663432,
-      "y": 189.51990608644982,
-      "zoom": 0.5797537603956137
+      "x": 577.2946312546835,
+      "y": 579.0608934798818,
+      "zoom": 0.5
     }
   },
-  "name": "DBprojectfix 22.3",
+  "name": "unified_erd",
   "folder": {
     "name": "proj",
     "folderType": 2,
@@ -2553,6 +2563,6 @@
     "depth": 1,
     "id": 267518
   },
-  "id": 362906,
-  "updatedAtTimestamp": 1779201161
+  "id": 461262,
+  "updatedAtTimestamp": 1779275236
 }
