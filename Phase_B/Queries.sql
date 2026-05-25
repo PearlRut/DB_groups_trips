@@ -33,7 +33,13 @@ JOIN routes r ON t.route_id = r.route_id
 JOIN transport_types tt ON t.transport_type_id = tt.transport_type_id
 LEFT JOIN trip_participants tp ON t.trip_id = tp.trip_id
 GROUP BY
-    
+    t.trip_id,
+    t.trip_name,
+    r.route_name,
+    r.region,
+    tt.transport_type_name,
+    t.group_size,
+    t.status;
 
 
 
