@@ -233,6 +233,10 @@ FROM public.get_trip_occupancy_summary(-999);
 
 ---
 
+
+
+
+
 # 3. Function_2_LogisticsCursor.sql
 
 ## שם הפונקציה
@@ -301,7 +305,7 @@ ROLLBACK;
 
 החזרת שם ה־cursor:
 
-![Function 2 ref cursor](img/func2-run-success-ref cursor.png)
+![Function 2 ref cursor](img/func2-run-success-retrn of cursor.png)
 
 שליפת הנתונים מתוך ה־cursor:
 
@@ -500,7 +504,7 @@ CALL public.allocate_equipment_to_trip(
 
 חיפוש ציוד מתאים:
 
-![Procedure 2 search equipment](img/procedure2-search equipment.png)
+![Procedure 2 search equipment](img/procedure2-search exist equipment.png)
 
 מצב לפני:
 
