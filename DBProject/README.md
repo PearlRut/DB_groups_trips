@@ -120,18 +120,40 @@ The following SQL scripts were created and used in the project:
 
 ### Python Scripts
 - [Generate Data](scripts/generate_data.py)
-- [Insert Data Directly (Python)](scripts/insert_actions_direct.py)
+- [Append Data Directly (Python)](scripts/append_data_direct.py)
 
 
+### Data Insertion Run Commands (Quick Reference)
 
+If you need to demonstrate or execute each of the data insertion methods for the lecturer without restarting the database, run these commands in your terminal (from the `DBProject` directory):
 
+#### 1. Manual SQL INSERT
+To run a manual SQL insert command directly on the database container:
+```bash
+docker exec -it PostgreSQL_DB psql -U postgres -d group_trips_db -c "INSERT INTO actions (address, action_type, action_name, event_id) VALUES ('Tel Aviv', 'Manual Insert', 'Test Action Manual', 1);"
+```
 
-### Data Insertion Methods
+#### 2. Python Direct Insertion
+To run the Python script that appends new rows directly to all 9 tables in the live database:
+```bash
+python3 scripts/append_data_direct.py
+```
 
-In this section, we document all three required data insertion methods, including screenshots before and after each process.
+#### 3. CSV File Insertion
+To import data from a CSV file (e.g., loading new routes) using the PostgreSQL COPY command in the running container:
+```bash
+docker exec -it PostgreSQL_DB psql -U postgres -d group_trips_db -c "\copy routes(route_name, region, distance_km, duration_hours, difficulty_level) FROM '/tmp/data/routes.csv' DELIMITER ',' CSV HEADER;"
+```
+
+#### 4. External Data Source (Mockaroo CSV Import)
+To import Mockaroo-generated datasets (e.g., participants CSV) directly into the database:
+```bash
+docker exec -it PostgreSQL_DB psql -U postgres -d group_trips_db -c "\copy participants(first_name, last_name, phone, email, birth_date) FROM '/tmp/data/participants.csv' DELIMITER ',' CSV HEADER;"
+```
 
 ---
-### Data Insertion Methods
+
+### Data Insertion Methods Detailed Documentation
 
 In this section, we document all required data insertion methods, including screenshots before and after each process.
 
@@ -150,8 +172,8 @@ After executing the query, we verified the insertion by retrieving the latest re
 
 #### 2. Python Direct Insertion (Table: actions)
 
-We used a Python script (`insert_actions_direct.py`) to insert data directly into the database.  
-This script programmatically inserted 500 rows into the `actions` table.
+We used a Python script (`append_data_direct.py`) to insert data directly into the database.  
+This script programmatically inserts new routes, transport types, participants, guides, trips, schedules, events, and actions.
 
 After running the script, we verified the insertion by checking the total number of rows in the table and confirming that the count increased accordingly.
 
@@ -288,24 +310,11 @@ Each step was documented and verified using screenshots.
 ## Project Resources
 
 - Main Project:  
-  https://github.com/PearlRut/phase1/tree/main/DBProject
-
-- Backup Folder (by date):  
-  https://github.com/PearlRut/phase1/tree/main/DBProject/backups/2026-04-03
-
-- Final Version (Tag):  
-  https://github.com/PearlRut/phase1/tree/v1.1
-
-
-   - Main Project:
   https://github.com/PearlRut/Group_Trips/tree/main/DBProject
 
-  - Backup File:  
-  https://github.com/PearlRut/Group_Trips/tree/main/DBProject/data
+- Backup Folder (by date):  
+  https://github.com/PearlRut/Group_Trips/tree/main/DBProject/backups/2026-04-03
 
 - Final Version (Tag):  
   https://github.com/PearlRut/Group_Trips/tree/v1.1
-=======
-- Backup Folder (by date):
-  https://github.com/PearlRut/phase1/tree/main/DBProject/backups/2026-04-03
->>>>>>> a71c81d (final structure: added backups folder and updated README)
+
