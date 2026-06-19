@@ -240,4 +240,23 @@ finally:
     conn.close()
 
 # how to run : python3 scripts/append_data_direct.py
+# cd /Users/ruthgold/Desktop/DB/DB_group_trips/DBProject
+
+#SELECT 'routes' AS table_name, COUNT(*) AS row_count FROM public.routes
+#UNION ALL
+#SELECT 'transport_types', COUNT(*) FROM public.transport_types
+#UNION ALL
+#SELECT 'participants', COUNT(*) FROM public.participants
+#UNION ALL
+#SELECT 'guides', COUNT(*) FROM public.guides
+#UNION ALL
+#SELECT 'trips', COUNT(*) FROM public.trips
+#UNION ALL
+#SELECT 'trip_participants', COUNT(*) FROM public.trip_participants
+#UNION ALL
+#SELECT 'schedules', COUNT(*) FROM public.schedules
+#UNION ALL
+#SELECT 'events', COUNT(*) FROM public.events
+#UNION ALL
+#SELECT 'actions', COUNT(*) FROM public.actions;
 
