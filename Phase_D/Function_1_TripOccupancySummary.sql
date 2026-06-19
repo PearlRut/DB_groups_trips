@@ -4,6 +4,16 @@
 -- Purpose: Return occupancy summary for a specific trip
 -- =====================================================
 
+
+-- מה הפונקציה עושה:
+-- מקבלת trip_id ומחזירה סיכום תפוסה:
+-- group_size, מספר נרשמים, מקומות פנויים, אחוז תפוסה,
+-- סטטוס נוכחי וסטטוס מומלץ: AVAILABLE / FULL / OVERBOOKED.
+--
+-- אלמנטים שיש בה:
+-- Function, RECORD, SELECT INTO, IF/ELSIF/ELSE, RETURN QUERY, EXCEPTION.
+
+
 CREATE OR REPLACE FUNCTION public.get_trip_occupancy_summary(p_trip_id INT)
 RETURNS TABLE (
     trip_id INT,
