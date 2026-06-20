@@ -2,6 +2,17 @@
 
 import tkinter as tk
 from tkinter import ttk
+import platform
+
+IS_MAC = platform.system() == "Darwin"
+
+if IS_MAC:
+    try:
+        from tkmacosx import Button as MacButton
+    except ImportError:
+        MacButton = tk.Button
+else:
+    MacButton = tk.Button
 
 
 BG_COLOR = "#f4f6f8"
@@ -40,21 +51,41 @@ def create_subtitle(root, text):
 
 
 def create_button(parent, text, command, color=BLUE, width=24):
-    button = tk.Button(
-        parent,
-        text=text,
-        command=command,
-        width=width,
-        height=2,
-        font=("Arial", 11),
-        bg=color,
-        fg="white",
-        activebackground=color,
-        activeforeground="white",
-        relief="flat",
-        cursor="hand2"
-    )
+    if IS_MAC:
+        # tkmacosx Button uses pixel sizing instead of character sizing
+        pixel_width = width * 8.5
+        pixel_height = 40
+        button = MacButton(
+            parent,
+            text=text,
+            command=command,
+            width=pixel_width,
+            height=pixel_height,
+            font=("Arial", 11),
+            bg=color,
+            fg="white",
+            activebackground=color,
+            activeforeground="white",
+            relief="flat",
+            cursor="hand2"
+        )
+    else:
+        button = tk.Button(
+            parent,
+            text=text,
+            command=command,
+            width=width,
+            height=2,
+            font=("Arial", 11),
+            bg=color,
+            fg="white",
+            activebackground=color,
+            activeforeground="white",
+            relief="flat",
+            cursor="hand2"
+        )
     return button
+
 
 
 def create_table(parent, columns, headings):

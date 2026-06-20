@@ -1,5 +1,6 @@
 # app_controller.py
 
+import tkinter as tk
 from screens.main_menu_screen import MainMenuScreen
 from screens.trips_screen import TripsScreen
 from screens.participants_screen import ParticipantsScreen
@@ -20,6 +21,10 @@ class AppController:
         self.root.title("Trip Management System - Stage E")
         self.root.geometry("1250x780")
         self.root.configure(bg="#f4f6f8")
+
+        # Container frame for all screens to prevent overlapping/ghosting on macOS
+        self.content_frame = tk.Frame(self.root, bg="#f4f6f8")
+        self.content_frame.pack(fill="both", expand=True)
 
         self.simple_tables = {
             "routes": {
@@ -72,54 +77,55 @@ class AppController:
         self.show_main_screen()
 
     def clear_screen(self):
-        for widget in self.root.winfo_children():
+        for widget in self.content_frame.winfo_children():
             widget.destroy()
+        self.root.update_idletasks()
 
     def show_main_screen(self):
-        screen = MainMenuScreen(self.root, self)
+        screen = MainMenuScreen(self.content_frame, self)
         screen.show()
 
     def show_trips_screen(self):
-        screen = TripsScreen(self.root, self)
+        screen = TripsScreen(self.content_frame, self)
         screen.show()
 
     def show_participants_screen(self):
-        screen = ParticipantsScreen(self.root, self)
+        screen = ParticipantsScreen(self.content_frame, self)
         screen.show()
 
     def show_trip_assignments_screen(self):
-        screen = TripAssignmentsScreen(self.root, self)
+        screen = TripAssignmentsScreen(self.content_frame, self)
         screen.show()
 
     def show_trip_resources_screen(self):
-        screen = TripResourcesScreen(self.root, self)
+        screen = TripResourcesScreen(self.content_frame, self)
         screen.show()
 
     def show_equipment_screen(self):
-        screen = EquipmentScreen(self.root, self)
+        screen = EquipmentScreen(self.content_frame, self)
         screen.show()
 
     def show_transportation_screen(self):
-        screen = TransportationScreen(self.root, self)
+        screen = TransportationScreen(self.content_frame, self)
         screen.show()
 
     def show_guides_screen(self):
-        screen = GuidesScreen(self.root, self)
+        screen = GuidesScreen(self.content_frame, self)
         screen.show()
 
     def show_logs_screen(self):
-        screen = LogsScreen(self.root, self)
+        screen = LogsScreen(self.content_frame, self)
         screen.show()
 
     def show_events_schedule_screen(self):
-        screen = EventsScheduleScreen(self.root, self)
+        screen = EventsScheduleScreen(self.content_frame, self)
         screen.show()
 
     def show_simple_crud_screen(self, table_key):
         config = self.simple_tables[table_key]
-        screen = SimpleCrudScreen(self.root, self, config)
+        screen = SimpleCrudScreen(self.content_frame, self, config)
         screen.show()
 
     def show_reports_screen(self):
-        screen = ReportsScreen(self.root, self)
+        screen = ReportsScreen(self.content_frame, self)
         screen.show()
