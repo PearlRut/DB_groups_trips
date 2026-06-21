@@ -202,6 +202,8 @@ class TransportationScreen:
         for item in self.tree.get_children():
             self.tree.delete(item)
 
+        # שאילתת SELECT לשליפת כלל התחבורה.
+        # אנו מבצעים JOIN לטבלת הספקים ולטבלת סוגי תחבורה כדי להציג את השמות הקריאים במקום מזהי ID.
         query = """
             SELECT
                 tr.transportid,
@@ -302,6 +304,7 @@ class TransportationScreen:
             messagebox.showwarning("שגיאה", "יש להזין Transport ID")
             return
 
+        # שאילתת SELECT לשליפת רשומת תחבורה ספציפית לפי מזהה ה-ID שלה.
         query = """
             SELECT
                 tr.transportid,
@@ -340,6 +343,7 @@ class TransportationScreen:
         supplier_id = self.supplier_name_to_id[self.supplier_var.get().strip()]
         transport_type_id = self.transport_type_name_to_id[self.transport_type_var.get().strip()]
 
+        # שאילתת INSERT להוספת רשומת תחבורה חדשה עם קישור לספק ולסוג תחבורה.
         query = """
             INSERT INTO public.transportation
                 (transportid, capacity, supplierid, transport_type_id)
@@ -368,6 +372,7 @@ class TransportationScreen:
         supplier_id = self.supplier_name_to_id[self.supplier_var.get().strip()]
         transport_type_id = self.transport_type_name_to_id[self.transport_type_var.get().strip()]
 
+        # שאילתת UPDATE לעדכון שדות רשומת תחבורה לפי מפתח ראשי.
         query = """
             UPDATE public.transportation
             SET
@@ -404,6 +409,7 @@ class TransportationScreen:
         if not confirm:
             return
 
+        # שאילתת DELETE למחיקת רשומת תחבורה.
         query = """
             DELETE FROM public.transportation
             WHERE transportid = %s;

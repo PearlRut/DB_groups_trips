@@ -255,6 +255,8 @@ class EventsScheduleScreen:
         for item in self.event_tree.get_children():
             self.event_tree.delete(item)
 
+        # שאילתת SELECT לשליפת כלל האירועים.
+        # האירועים משויכים לטיולים, ולכן מתבצע JOIN עם טבלת הטיולים trips כדי להציג את שם הטיול.
         rows = fetch_all("""
             SELECT
                 e.event_id,
@@ -612,6 +614,9 @@ class EventsScheduleScreen:
         for item in self.action_tree.get_children():
             self.action_tree.delete(item)
 
+        # שאילתת SELECT לשליפת כלל הפעולות.
+        # פעולה משויכת לאירוע, שמשויך לטיול.
+        # לכן מתבצע JOIN כפול: מפעולות (actions) לאירועים (events), ומאירועים לטיולים (trips).
         rows = fetch_all("""
             SELECT
                 a.action_id,
@@ -918,6 +923,8 @@ class EventsScheduleScreen:
         for item in self.schedule_tree.get_children():
             self.schedule_tree.delete(item)
 
+        # שאילתת SELECT לשליפת רשומות הלו"ז (schedules).
+        # הלו"ז משויך לטיול, ולכן מתבצע JOIN עם טבלת הטיולים trips.
         rows = fetch_all("""
             SELECT
                 t.trip_name,

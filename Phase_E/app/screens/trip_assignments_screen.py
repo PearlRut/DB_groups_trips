@@ -222,6 +222,9 @@ class TripAssignmentsScreen:
         for item in self.tree.get_children():
             self.tree.delete(item)
 
+        # שאילתת SELECT לשליפת כלל המשתתפים ששויכו לטיולים כלשהם.
+        # אנו מחברים (JOIN) את טבלת הקשר (trip_participants) עם טבלת הטיולים (trips) וטבלת המשתתפים (participants)
+        # כדי להציג את השמות המלאים ותאריכי הטיולים.
         query = """
             SELECT
                 t.trip_id,
@@ -324,6 +327,7 @@ class TripAssignmentsScreen:
         trip_id = self.trip_label_to_id[self.trip_var.get().strip()]
         participant_id = self.participant_label_to_id[self.participant_var.get().strip()]
 
+        # שאילתת SELECT לשליפת שיבוץ ספציפי לפי המפתח המורכב שלו (מזהה טיול ומזהה משתתף).
         query = """
             SELECT
                 t.trip_id,
@@ -363,6 +367,8 @@ class TripAssignmentsScreen:
         trip_id = self.trip_label_to_id[self.trip_var.get().strip()]
         participant_id = self.participant_label_to_id[self.participant_var.get().strip()]
 
+        # שאילתת INSERT ליצירת שיבוץ חדש בין משתתף לטיול.
+        # שימי לב: פעולה זו עלולה להפעיל טריגרים של ולידציה ב-Database (כגון מניעת רישום כפול).
         query = """
             INSERT INTO public.trip_participants
                 (trip_id, participant_id)
@@ -401,6 +407,8 @@ class TripAssignmentsScreen:
         new_trip_id = self.trip_label_to_id[self.trip_var.get().strip()]
         new_participant_id = self.participant_label_to_id[self.participant_var.get().strip()]
 
+        # שאילתת UPDATE לעדכון המזהים של שיבוץ קיים.
+        # מכיוון שזהו מפתח מורכב, אנו מעדכנים את השדות trip_id ו-participant_id ומסננים לפי המזהים הישנים שהיו שמורים.
         query = """
             UPDATE public.trip_participants
             SET
@@ -446,6 +454,7 @@ class TripAssignmentsScreen:
         if not confirm:
             return
 
+        # שאילתת DELETE לביטול שיבוץ (מחיקה מטבלת הקשר).
         query = """
             DELETE FROM public.trip_participants
             WHERE trip_id = %s

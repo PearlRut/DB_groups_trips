@@ -242,6 +242,7 @@ class ParticipantsScreen:
             messagebox.showwarning("שגיאה", "יש להזין Participant ID")
             return
 
+        # שאילתת SELECT לשליפת משתתף ספציפי לפי מזהה ה-ID שלו.
         query = """
             SELECT
                 participant_id,
@@ -317,6 +318,7 @@ class ParticipantsScreen:
             messagebox.showwarning("שגיאה", "יש למלא את כל השדות")
             return
 
+        # שאילתת UPDATE לעדכון שדות המשתתף לפי מזהה המשתתף (participant_id).
         query = """
             UPDATE public.participants
             SET
@@ -354,6 +356,8 @@ class ParticipantsScreen:
         if not confirm:
             return
 
+        # שאילתת DELETE למחיקת משתתף לפי ה-ID שלו.
+        # שימי לב: המחיקה עלולה להיכשל אם המשתתף משובץ כבר לטיולים כלשהם (שלמות הנתונים מונעת מחיקת יתומים).
         query = """
             DELETE FROM public.participants
             WHERE participant_id = %s;

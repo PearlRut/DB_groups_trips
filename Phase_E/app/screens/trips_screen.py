@@ -240,6 +240,8 @@ class TripsScreen:
         for item in self.tree.get_children():
             self.tree.delete(item)
 
+        # שאילתת SELECT לשליפת כל הטיולים יחד עם שם המסלול ושם סוג התחבורה.
+        # אנו מבצעים שני JOIN-ים (חיבורים) כדי להציג ערכים ידידותיים למשתמש בטבלה.
         query = """
             SELECT
                 t.trip_id,
@@ -370,6 +372,7 @@ class TripsScreen:
             messagebox.showwarning("שגיאה", "יש להזין Trip ID")
             return
 
+        # שאילתת SELECT לשליפת טיול בודד לפי מזהה ה-ID שלו יחד עם נתוני המסלול והתחבורה שלו.
         query = """
             SELECT
                 t.trip_id,
@@ -411,6 +414,8 @@ class TripsScreen:
 
         values = self.get_form_values()
 
+        # שאילתת INSERT להוספת טיול חדש. המזהה (trip_id) מיוצר אוטומטית כמפתח סיראלי ב-Database
+        # ולכן אינו חלק מרשימת העמודות של השאילתה.
         query = """
             INSERT INTO public.trips
                 (trip_name, start_date, end_date, group_size, status, route_id, transport_type_id, trip_type)
@@ -445,6 +450,7 @@ class TripsScreen:
         values = self.get_form_values()
         trip_id = self.trip_id_var.get().strip()
 
+        # שאילתת UPDATE לעדכון רשומת טיול קיימת לפי מפתח ראשי.
         query = """
             UPDATE public.trips
             SET
@@ -495,6 +501,9 @@ class TripsScreen:
         if not confirm:
             return
 
+        # שאילתת DELETE למחיקת טיול.
+        # שימי לב: המחיקה עלולה להיכשל (התנהגות תקינה!) אם ישנם משתתפים שמשובצים לטיול זה,
+        # עקב מגבלות מפתח זר (Foreign Key constraints) המגינות על שלמות בסיס הנתונים.
         query = """
             DELETE FROM public.trips
             WHERE trip_id = %s;

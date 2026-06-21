@@ -145,6 +145,10 @@ class LogsScreen:
     def show_trip_status_log(self):
         self.current_log_type = "trip_status"
 
+        # שאילתת SELECT לשליפת לוג שינויי הסטטוס של הטיולים.
+        # טבלה זו (trip_status_log) מתעדכנת אוטומטית על ידי טריגר בבסיס הנתונים (Database Trigger) 
+        # בכל פעם שמתבצע שינוי בעמודת הסטטוס של טבלת הטיולים.
+        # אנו מבצעים LEFT JOIN לטבלת הטיולים כדי להציג את שם הטיול הנוכחי.
         query = """
             SELECT
                 l.log_id,
@@ -166,6 +170,9 @@ class LogsScreen:
     def show_equipment_stock_log(self):
         self.current_log_type = "equipment_stock"
 
+        # שאילתת SELECT לשליפת לוג שינויי המלאי של הציוד.
+        # גם טבלה זו (equipment_stock_log) מוזנת באמצעות טריגר ייעודי השומר היסטוריית שינויים,
+        # ומציגה את הכמות הישנה, החדשה, ואת ההפרש שנוצר (quantity_changed).
         query = """
             SELECT
                 l.log_id,

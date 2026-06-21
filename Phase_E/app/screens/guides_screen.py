@@ -192,6 +192,9 @@ class GuidesScreen:
         for item in self.tree.get_children():
             self.tree.delete(item)
 
+        # שאילתת SELECT לשליפת כלל המדריכים.
+        # טבלת guides היא ישות תת-טיפוס (Subtype) של participants (קשר ירושה של 1 ל-1).
+        # אנו מבצעים JOIN כדי לקבל את פרטיהם האישיים של המדריכים מטבלת המשתתפים.
         query = """
             SELECT
                 p.first_name,
@@ -276,6 +279,7 @@ class GuidesScreen:
 
         participant_id = self.participant_label_to_id[self.participant_var.get().strip()]
 
+        # שאילתת SELECT לשליפת נתוני רישיון וניסיון של מדריך ספציפי לפי מזהה המשתתף שלו.
         query = """
             SELECT
                 g.license_number,
@@ -301,6 +305,7 @@ class GuidesScreen:
         license_number = self.license_number_var.get().strip()
         experience_years = int(self.experience_years_var.get().strip())
 
+        # שאילתת INSERT להגדרת משתתף קיים כמדריך (הוספת רשומה לישות היורשת guides).
         query = """
             INSERT INTO public.guides
                 (participant_id, license_number, experience_years)
@@ -333,6 +338,7 @@ class GuidesScreen:
         license_number = self.license_number_var.get().strip()
         experience_years = int(self.experience_years_var.get().strip())
 
+        # שאילתת UPDATE לעדכון מספר רישיון ושנות הניסיון של המדריך.
         query = """
             UPDATE public.guides
             SET
@@ -368,6 +374,7 @@ class GuidesScreen:
 
         participant_id = self.participant_label_to_id[self.participant_var.get().strip()]
 
+        # שאילתת DELETE להסרת רשומת מדריך מטבלת guides (המשתתף עצמו נשאר בטבלת participants).
         query = """
             DELETE FROM public.guides
             WHERE participant_id = %s;

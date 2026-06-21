@@ -194,6 +194,8 @@ class EquipmentScreen:
         for item in self.tree.get_children():
             self.tree.delete(item)
 
+        # שאילתת SELECT לשליפת נתוני הציוד יחד עם שם החברה של הספק (company_name).
+        # משתמשים ב-JOIN (חיבור) של טבלת הציוד (equipment) וטבלת הספקים (supplier) לפי מפתח זר (supplierid).
         query = """
             SELECT
                 e.equipmentid,
@@ -288,6 +290,8 @@ class EquipmentScreen:
             messagebox.showwarning("שגיאה", "יש להזין Equipment ID")
             return
 
+        # שאילתת SELECT לשליפת רשומת ציוד ספציפית לפי ה-ID שלה.
+        # גם כאן מבצעים JOIN כדי לקבל את שם הספק במקום מזהה מספרי לא קריא.
         query = """
             SELECT
                 e.equipmentid,
@@ -324,6 +328,8 @@ class EquipmentScreen:
         total_in_stock = int(self.total_in_stock_var.get().strip())
         supplier_id = self.supplier_name_to_id[self.supplier_var.get().strip()]
 
+        # שאילתת INSERT להוספת פריט ציוד חדש לטבלת equipment.
+        # הפרמטרים מועברים כסדרה של %s למניעת הזרקת SQL.
         query = """
             INSERT INTO public.equipment
                 (equipmentid, itemname, totalinstock, supplierid)
@@ -352,6 +358,9 @@ class EquipmentScreen:
         total_in_stock = int(self.total_in_stock_var.get().strip())
         supplier_id = self.supplier_name_to_id[self.supplier_var.get().strip()]
 
+        # שאילתת UPDATE לעדכון שדות פריט הציוד לפי מפתח ראשי (equipmentid).
+        # שימי לב: שינוי כמות הציוד במלאי (totalinstock) יפעיל באופן אוטומטי טריגר ב-Database
+        # שיכתוב רשומה חדשה לטבלת הלוגים לצורך מעקב שינויים.
         query = """
             UPDATE public.equipment
             SET
@@ -391,6 +400,7 @@ class EquipmentScreen:
         if not confirm:
             return
 
+        # שאילתת DELETE למחיקת פריט הציוד מבסיס הנתונים לפי ה-ID שלו.
         query = """
             DELETE FROM public.equipment
             WHERE equipmentid = %s;
