@@ -57,11 +57,16 @@ class TripAssignmentsScreen:
         self.load_table()
 
     def load_reference_data(self):
+        # מילוני מיפוי דו-כיווניים (Two-way mapping dictionaries):
+        # לטיולים ומשתתפים. אנו צריכים מיפוי דו-כיווני כי:
+        # 1. במילון label_to_id אנו מחפשים את ה-ID לפי מה שהמשתמש בחר ב-Combobox.
+        # 2. במילון id_to_label אנו משתמשים כדי להציג את השמות המתאימים בטופס כאשר המשתמש בוחר שורה בטבלה.
         self.trip_label_to_id = {}
         self.participant_label_to_id = {}
         self.trip_id_to_label = {}
         self.participant_id_to_label = {}
 
+        # שליפת טיולים ויצירת תווית קריאה (למשל: "טיול גיבוש | 2026-06-25")
         trips = fetch_all("""
             SELECT trip_id, trip_name, start_date
             FROM public.trips
@@ -73,6 +78,7 @@ class TripAssignmentsScreen:
             self.trip_label_to_id[label] = row["trip_id"]
             self.trip_id_to_label[row["trip_id"]] = label
 
+        # שליפת משתתפים ויצירת תווית קריאה (למשל: "ישראל ישראלי | 050-1234567")
         participants = fetch_all("""
             SELECT participant_id, first_name, last_name, phone
             FROM public.participants
@@ -281,14 +287,18 @@ class TripAssignmentsScreen:
         return True
 
     def on_select(self, event):
+        # מופעל בלחיצה על שורה בטבלה.
+        # מכיוון שלטבלת הקשר (trip_participants) אין מפתח ראשי יחיד אלא מפתח מורכב (Composite Primary Key)
+        # המורכב מ-trip_id ו-participant_id, אנו משתמשים במזהה השורה (iid) בטבלה במבנה של: "trip_id|participant_id".
         selected = self.tree.selection()
 
         if not selected:
             return
 
-        item_id = selected[0]
+        item_id = selected[0] # שליפת ה-iid הייחודי של השורה שנבחרה
 
         try:
+            # פירוק ה-iid לפי התיקון "|" כדי לקבל את שני המזהים השונים
             trip_id_text, participant_id_text = item_id.split("|")
             trip_id = int(trip_id_text)
             participant_id = int(participant_id_text)
@@ -296,9 +306,11 @@ class TripAssignmentsScreen:
             messagebox.showerror("שגיאה", "לא ניתן לקרוא את השיבוץ שנבחר")
             return
 
+        # שמירת המזהים הישנים במשתני מחלקה (כדי שנוכל להשתמש בהם ב-WHERE של שאילתת UPDATE/DELETE בהמשך)
         self.selected_old_trip_id = trip_id
         self.selected_old_participant_id = participant_id
 
+        # עדכון תיבות ה-Combobox בערך הטקסטואלי המתאים לפי מזהי ה-ID ששלפנו
         if trip_id in self.trip_id_to_label:
             self.trip_var.set(self.trip_id_to_label[trip_id])
 

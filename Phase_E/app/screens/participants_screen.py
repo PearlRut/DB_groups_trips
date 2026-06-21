@@ -22,6 +22,9 @@ class ParticipantsScreen:
         self.root = root
         self.app = app
 
+        # הגדרת משתני Tkinter (StringVar) המקושרים לשדות הקלט בטופס.
+        # שינוי הערך במשתנה זה (באמצעות .set()) יעדכן מיידית את שדה הטקסט במסך,
+        # וקריאה של הערך (באמצעות .get()) תשלוף את מה שהמשתמש הקליד בשדה.
         self.participant_id_var = tk.StringVar()
         self.first_name_var = tk.StringVar()
         self.last_name_var = tk.StringVar()
@@ -32,6 +35,7 @@ class ParticipantsScreen:
         self.tree = None
 
     def show(self):
+        # ניקוי המסך הנוכחי לפני טעינת רכיבי המשתתפים
         self.app.clear_screen()
 
         create_title(self.root, "ניהול משתתפים")
@@ -39,11 +43,13 @@ class ParticipantsScreen:
         main_frame = tk.Frame(self.root, bg=BG_COLOR)
         main_frame.pack(fill="both", expand=True, padx=20, pady=10)
 
-        self.create_form(main_frame)
-        self.create_actions(main_frame)
-        self.create_table_area(main_frame)
-        self.create_bottom_buttons()
+        # בניית חלקי הממשק של המסך:
+        self.create_form(main_frame)           # טופס להזנת פרטי משתתף
+        self.create_actions(main_frame)        # כפתורי פעולות (הוספה, עדכון, מחיקה...)
+        self.create_table_area(main_frame)     # טבלה המציגה את כלל הרשומות
+        self.create_bottom_buttons()           # כפתורי ניווט תחתוניים (חזרה, רענון)
 
+        # טעינה ראשונית של נתוני המשתתפים מה-DB אל הטבלה
         self.load_table()
 
     def create_form(self, parent):
@@ -165,9 +171,11 @@ class ParticipantsScreen:
         refresh_btn.pack(side="left", padx=10)
 
     def load_table(self):
+        # ריקון הטבלה ב-UI מכל הרשומות הקיימות כדי למנוע כפילויות לפני הטעינה מחדש
         for item in self.tree.get_children():
             self.tree.delete(item)
 
+        # שאילתת SELECT לשליפת כלל המשתתפים ממוינים לפי ה-ID שלהם
         query = """
             SELECT
                 participant_id,
@@ -180,6 +188,7 @@ class ParticipantsScreen:
             ORDER BY participant_id;
         """
 
+        # קריאה לפונקציית העזר מ-db.py שמבצעת את השאילתה ומחזירה רשימת מילונים
         rows = fetch_all(query)
 
         for row in rows:
@@ -205,13 +214,20 @@ class ParticipantsScreen:
         self.birth_date_var.set("")
 
     def on_select(self, event):
+        """
+        פונקציה זו מופעלת אוטומטית (Event Binding) כאשר המשתמש בוחר שורה בטבלה.
+        היא שולפת את ערכי השורה שנבחרה ומציבה אותם בתוך משתני ה-StringVar של הטופס,
+        מה שמאפשר למשתמש לערוך או למחוק את הרשומה שנבחרה בקלות.
+        """
         selected = self.tree.selection()
 
         if not selected:
             return
 
+        # שליפת הערכים של השורה הראשונה שנבחרה
         values = self.tree.item(selected[0], "values")
 
+        # עדכון משתני הטופס כדי שיציגו את הפרטים בשדות הקלט
         self.participant_id_var.set(values[0])
         self.first_name_var.set(values[1])
         self.last_name_var.set(values[2])
@@ -251,16 +267,20 @@ class ParticipantsScreen:
         self.birth_date_var.set(row["birth_date"])
 
     def add_participant(self):
+        # קריאת נתוני הטופס וניקוי רווחים מיותרים בקצוות (strip)
         first_name = self.first_name_var.get().strip()
         last_name = self.last_name_var.get().strip()
         phone = self.phone_var.get().strip()
         email = self.email_var.get().strip()
         birth_date = self.birth_date_var.get().strip()
 
+        # ולידציה בסיסית: בדיקה שכל שדות החובה מולאו
         if not first_name or not last_name or not phone or not email or not birth_date:
             messagebox.showwarning("שגיאה", "יש למלא את כל השדות חוץ מ-ID")
             return
 
+        # שאילתת INSERT מאובטחת. שימוש ב-%s מונע מתקפות SQL Injection באופן מובנה,
+        # כיוון שהספרייה psycopg2 דואגת לבצע סניטציה וציטוט (quoting) מתאים לערכים.
         query = """
             INSERT INTO public.participants
                 (first_name, last_name, phone, email, birth_date)
@@ -268,6 +288,7 @@ class ParticipantsScreen:
                 (%s, %s, %s, %s, %s);
         """
 
+        # ביצוע השאילתה מול ה-DB עם רשימת הערכים
         success, message = execute_query(
             query,
             (first_name, last_name, phone, email, birth_date)
@@ -275,8 +296,8 @@ class ParticipantsScreen:
 
         if success:
             messagebox.showinfo("הצלחה", "המשתתף נוסף בהצלחה")
-            self.clear_form()
-            self.load_table()
+            self.clear_form() # ניקוי השדות לאחר ההוספה
+            self.load_table() # טעינת הטבלה מחדש כדי להציג את המשתתף החדש
         else:
             messagebox.showerror("שגיאה", message)
 

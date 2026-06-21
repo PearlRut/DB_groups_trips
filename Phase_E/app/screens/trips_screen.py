@@ -55,9 +55,13 @@ class TripsScreen:
         self.load_table()
 
     def load_combo_data(self):
+        # מילוני מיפוי לטבלאות מקושרות (Foreign Keys):
+        # 1. מזהה מסלול (route_id) מול שם המסלול (route_name)
+        # 2. מזהה סוג תחבורה (transport_type_id) מול שם סוג תחבורה (transport_type_name)
         self.route_name_to_id = {}
         self.transport_type_name_to_id = {}
 
+        # שליפת רשימת המסלולים הקיימים
         routes = fetch_all("""
             SELECT route_id, route_name
             FROM public.routes
@@ -67,6 +71,7 @@ class TripsScreen:
         for row in routes:
             self.route_name_to_id[row["route_name"]] = row["route_id"]
 
+        # שליפת רשימת סוגי התחבורה הקיימים
         transport_types = fetch_all("""
             SELECT transport_type_id, transport_type_name
             FROM public.transport_types
@@ -303,6 +308,7 @@ class TripsScreen:
         self.transport_type_var.set(values[8])
 
     def validate_form(self, require_id=False):
+        # בדיקת תקינות השדות המוזנים בטופס
         if require_id and not self.trip_id_var.get().strip():
             messagebox.showwarning("שגיאה", "יש להזין Trip ID")
             return False
@@ -323,6 +329,7 @@ class TripsScreen:
                 messagebox.showwarning("שגיאה", f"יש למלא את השדה: {field_name}")
                 return False
 
+        # בדיקה שהמסלול וסוג התחבורה שנבחרו אכן קיימים במילוני המיפוי (מונע הזנת ערכים פיקטיביים)
         if self.route_var.get().strip() not in self.route_name_to_id:
             messagebox.showwarning("שגיאה", "יש לבחור Route מתוך הרשימה")
             return False
@@ -331,6 +338,7 @@ class TripsScreen:
             messagebox.showwarning("שגיאה", "יש לבחור Transport Type מתוך הרשימה")
             return False
 
+        # וידוא שגודל הקבוצה הוא מספר שלם תקין
         try:
             int(self.group_size_var.get().strip())
         except ValueError:
@@ -340,6 +348,7 @@ class TripsScreen:
         return True
 
     def get_form_values(self):
+        # שליפת מזהי המסלול וסוג התחבורה מתוך המילונים באמצעות השמות שנבחרו בתיבות ה-Combobox
         route_id = self.route_name_to_id[self.route_var.get().strip()]
         transport_type_id = self.transport_type_name_to_id[self.transport_type_var.get().strip()]
 

@@ -49,6 +49,8 @@ class EquipmentScreen:
         self.load_table()
 
     def load_supplier_data(self):
+        # מילון עזר למיפוי: שם החברה (מפתח) -> מזהה הספק הפיזי ב-DB (ערך).
+        # מסייע להצגת שמות ספקים קריאים למשתמש בתיבת הבחירה (Combobox) בזמן שבשאילתות SQL אנו שולחים את המפתח הזר (ID).
         self.supplier_name_to_id = {}
 
         suppliers = fetch_all("""
@@ -72,6 +74,7 @@ class EquipmentScreen:
         )
         form_frame.pack(fill="x", pady=10)
 
+        # רשימת השדות להצגה בטופס. שדה הספק מקבל כערכי בחירה (options) את רשימת השמות מהמילון שטענו קודם.
         fields = [
             ("Equipment ID", self.equipment_id_var, "entry", None),
             ("Item Name *", self.item_name_var, "entry", None),

@@ -173,6 +173,9 @@ class ReportsScreen:
         self.tree = tree
 
     def show_trip_planning_summary(self):
+        # שליפת נתונים מתוך VIEW (מבט/תצוגה) השמורה בבסיס הנתונים.
+        # מבט זה מאחד מספר טבלאות (trips, routes, trip_assignments) ומבצע חישובים מאחורי הקלעים.
+        # אנו מתייחסים ל-VIEW בשאילתת SELECT בדיוק כמו לטבלה רגילה.
         query = """
             SELECT *
             FROM public.trip_planning_summary_view
@@ -183,6 +186,7 @@ class ReportsScreen:
         self.display_rows(rows)
 
     def show_trip_logistics_operations(self):
+        # שליפת נתונים מתוך ה-VIEW השני ששמור בבסיס הנתונים ללוגיסטיקה ותפעול
         query = """
             SELECT *
             FROM public.trip_logistics_operations_view
@@ -193,6 +197,8 @@ class ReportsScreen:
         self.display_rows(rows)
 
     def run_trip_occupancy_function(self):
+        # הרצת פונקציית SQL (Function) שמקבלת פרמטר (מזהה טיול) ומחזירה טבלה מסוכמת.
+        # שימי לב: הרצת פונקציה שמחזירה נתונים מתבצעת על ידי SELECT * FROM function_name(%s).
         trip_id = self.trip_id_var.get().strip()
 
         if not trip_id:
@@ -204,10 +210,13 @@ class ReportsScreen:
             FROM public.get_trip_occupancy_summary(%s);
         """
 
+        # העברת ה-trip_id כחלק מ-Tuple לתוך פונקציית fetch_all
         rows = fetch_all(query, (trip_id,))
         self.display_rows(rows)
 
     def run_update_trip_status_procedure(self):
+        # קריאה לפרוצדורה (Stored Procedure) באמצעות פקודת CALL.
+        # פרוצדורות אינן מחזירות נתונים ישירות אלא מבצעות שינויים בבסיס הנתונים (כמו הליך עדכון).
         confirm = messagebox.askyesno(
             "אישור פעולה",
             "האם להפעיל את הפרוצדורה שמעדכנת סטטוסי טיולים לפי תפוסה?"
@@ -216,10 +225,12 @@ class ReportsScreen:
         if not confirm:
             return
 
+        # קריאה לפרוצדורה בבסיס הנתונים
         query = """
             CALL public.update_trip_status_by_occupancy();
         """
 
+        # מכיוון שהפרוצדורה משנה נתונים (DML/Transaction), נשתמש ב-execute_query שמבצעת Commit
         success, message = execute_query(query)
 
         if success:
@@ -227,6 +238,7 @@ class ReportsScreen:
                 "הצלחה",
                 "הפרוצדורה הופעלה בהצלחה. ניתן לבדוק את השינוי בדוח תכנון טיולים או במסך ניהול טיולים."
             )
+            # טעינה מחדש של דוח התכנון כדי שהמשתמש יראה את השינויים שביצעה הפרוצדורה
             self.show_trip_planning_summary()
         else:
             messagebox.showerror("שגיאה", message)

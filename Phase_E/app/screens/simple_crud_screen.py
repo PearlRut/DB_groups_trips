@@ -22,11 +22,13 @@ class SimpleCrudScreen:
         self.root = root
         self.app = app
 
-        self.title = config["title"]
-        self.table_name = config["table_name"]
-        self.primary_key = config["primary_key"]
-        self.fields = config["fields"]
+        # פירוק הגדרות הטבלה שהועברו מה-AppController
+        self.title = config["title"]               # כותרת המסך (למשל: "ניהול מסלולים")
+        self.table_name = config["table_name"]     # שם הטבלה הפיזית בבסיס הנתונים (למשל: "routes")
+        self.primary_key = config["primary_key"]   # שם עמודת המפתח הראשי (למשל: "route_id")
+        self.fields = config["fields"]             # רשימת העמודות, סוגי הפקדים, והאפשרויות שלהן
 
+        # מילון לשמירת משתני ה-StringVar של Tkinter בצורה דינמית לפי שמות העמודות
         self.vars = {}
         self.tree = None
 
@@ -46,6 +48,7 @@ class SimpleCrudScreen:
         self.load_table()
 
     def create_form(self, parent):
+        # יצירת מסגרת טופס מעוצבת
         form_frame = tk.LabelFrame(
             parent,
             text="פרטי רשומה",
@@ -57,12 +60,15 @@ class SimpleCrudScreen:
         )
         form_frame.pack(fill="x", pady=10)
 
+        # מעבר בלולאה על כל השדות שהוגדרו עבור הטבלה ויצירה דינמית שלהם בממשק
         for index, field in enumerate(self.fields):
             column_name, label_text, required, widget_type, options = field
 
+            # יצירת StringVar ושמירתו במילון תחת שם העמודה ב-SQL
             var = tk.StringVar()
             self.vars[column_name] = var
 
+            # סימון כוכבית ליד שדות חובה (שאינם המפתח הראשי שמיוצר אוטומטית)
             required_mark = " *" if required and column_name != self.primary_key else ""
 
             label = tk.Label(
@@ -236,6 +242,8 @@ class SimpleCrudScreen:
             self.vars[column].set(value)
 
     def get_next_id(self):
+        # מציאת המזהה הבא פנוי בטבלה. מתבצע על ידי שליפת הערך המקסימלי הקיים והוספת 1.
+        # COALESCE מטפל במצב שבו הטבלה ריקה לחלוטין (ואז MAX מחזיר NULL) ומחזיר במקומו 0.
         query = f"""
             SELECT COALESCE(MAX({self.primary_key}), 0) + 1 AS next_id
             FROM public.{self.table_name};
@@ -249,11 +257,13 @@ class SimpleCrudScreen:
         return row["next_id"]
 
     def get_form_values_for_insert(self):
+        # איסוף השמות והערכים עבור שאילתת INSERT
         columns = []
         values = []
 
         record_id = self.vars[self.primary_key].get().strip()
 
+        # אם המשתמש לא הזין מזהה, המערכת מייצרת מזהה חדש אוטומטית על ידי get_next_id()
         if record_id == "":
             record_id = self.get_next_id()
 
@@ -266,6 +276,7 @@ class SimpleCrudScreen:
 
             value = self.vars[column_name].get().strip()
 
+            # בדיקת תקינות: שדה חובה אינו יכול להיות ריק
             if required and value == "":
                 messagebox.showwarning(
                     "שגיאה",
@@ -273,6 +284,7 @@ class SimpleCrudScreen:
                 )
                 return None, None
 
+            # המרת מחרוזת ריקה ל-None כדי שיוזן ערך NULL ב-Database
             if value == "":
                 value = None
 
@@ -282,6 +294,7 @@ class SimpleCrudScreen:
         return columns, values
 
     def get_form_values_for_update(self):
+        # איסוף השמות והערכים עבור שאילתת UPDATE (לא כולל את המפתח הראשי שישמש לסינון ב-WHERE)
         columns = []
         values = []
 
